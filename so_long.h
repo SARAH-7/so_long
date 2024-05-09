@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:22 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/08 20:49:42 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/05/09 16:01:18 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef	struct s_player
 	int	y;
 	int	moves_counter;
 	int	collectable_counter;
+	int	valid_exit;
 	
 }		t_player;
 
@@ -58,7 +59,7 @@ typedef	struct s_game
 int	main(int ac, char **av);
 int mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y);
 int	file_parser(char *str);
-char	**map_parser(int fd);
+void	map_parser(int fd);
 char	*get_next_line(int fd);
 char	*get_next_line(int fd);
 char	*ft_strdup(const char *s1);

@@ -6,19 +6,19 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:10:31 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/08 20:52:56 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/05/09 15:42:16 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char **map_parser(int fd)
+void map_parser(int fd)
 {
     char *line = NULL;
     static int line_counter = 0;
     static int line_length = 0;
     int length = 0;
-    int **map = NULL;
+    char **map = NULL;
 	struct s_game game;
     int i = 0;
 
@@ -30,19 +30,18 @@ char **map_parser(int fd)
     {
         line_counter++;
         length = ft_strlen(line) - 1;
-        // ft_printf("%s", line);
-        map = malloc(length * sizeof(int*));
+        map = malloc(9999 * sizeof(char *));
         if (map == NULL)
         {
-            ft_printf("Memory allocation error!\n");
+            ft_printf("Memory Allocation Error!\n");
             exit(EXIT_FAILURE);
         }
         while (i < length)
         {
-            map[i] = malloc(line_length * sizeof(int));
+            map[i] = malloc(line_length * sizeof(char));
             if (map[i] == NULL)
             {
-                ft_printf("Memory allocation error!\n");
+                ft_printf("Memory Allocation Error!\n");
                 exit(EXIT_FAILURE);
             }
             i++;
@@ -56,8 +55,11 @@ char **map_parser(int fd)
     }
     int j = 1;
     int k = 0;
-    while ((line = get_next_line(fd)))
+    while (1)
     {
+        line = get_next_line(fd);
+        if (line == NULL)
+            break ;
 		i = 0;
         k = 0;
         line_counter++;
@@ -84,17 +86,14 @@ char **map_parser(int fd)
             }
 			i++;
 		}
-		ft_strlcpy((char *)map[j], line, line_length + 1);
-        // ft_printf("%s\n", map[j]);
+		ft_strlcpy(map[j], line, line_length + 1);
         j++;
         free(line);
     }
-    j = line_counter - 1;
+    j -= 1;
     k = 0;
-    ft_printf("[%s]\n", map[j]);
-    while (map[j][k] != '\0')
+    while (map[j][k] && map[j][k] != '\0')
     {
-        ft_printf("[%c]\n", map[j][k]);
         if (map[j][k] != '1')
         {
             ft_printf("Error Wall Entry!\n");
@@ -102,7 +101,6 @@ char **map_parser(int fd)
         }
         k++;
     }
-
 	if (line_counter <= 1 || game.player_checker != 1 || game.exit_checker != 1 || game.collectable_checker < 1)
 	{
 		ft_printf("Invalid Map Enteries!\n");
@@ -113,5 +111,4 @@ char **map_parser(int fd)
         free(map[i]);
     }
     free(map);
-    return ((char **)map);
 }

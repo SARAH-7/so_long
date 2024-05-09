@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:15 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/08 20:55:16 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/05/09 17:00:21 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int ac, char **av)
 			ft_printf("Wrong File Format\n");
 		return (1);
 	}
-	test = map_parser(fd);
-	ft_printf("[%s]\n", *test);
+	map_parser(fd);
+	// test = map_parser(fd);
+	// ft_printf("[%s]\n", *test);
 }
