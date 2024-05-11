@@ -6,7 +6,7 @@
 #    By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/29 10:58:12 by sbakhit           #+#    #+#              #
-#    Updated: 2024/05/07 20:17:56 by sbakhit          ###   ########.fr        #
+#    Updated: 2024/05/11 22:03:28 by sbakhit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ FT_PRINTF = ft_printf/libftprintf.a
 MINILIBX = minilibx/libmlx.a
 
 NAME = $(SO_LONG)
-SOURCES = so_long.c file_parser.c map_parser.c get_next_line.c get_next_line_utils.c  \
+SOURCES = so_long.c file_parser.c map_parser.c get_next_line.c get_next_line_utils.c \
+map_checker.c freeing_functions.c \
 
 OBJECTS = $(SOURCES:.c=.o)
 

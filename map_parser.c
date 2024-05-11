@@ -6,11 +6,35 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:10:31 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/11 18:47:40 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/05/11 19:15:55 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	map_width(char *map_row)
+{
+	int	i;
+
+	i = 0;
+	if (!map_row)
+		return (0);
+	while (map_row[i])
+		i++;
+	return (i);
+}
+
+int	map_height(char **map)
+{
+	int	i;
+
+	i = 0;
+	if (!map || !map[i])
+		return (0);
+	while (map[i])
+		i++;
+	return (i);
+}
 
 char **map_parser(int fd)
 {

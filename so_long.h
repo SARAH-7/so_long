@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:22 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/11 18:49:17 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/05/11 22:04:16 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,22 @@
 # include <stdlib.h>
 # include <limits.h>
 
+# define DIM 48
+# define W_KEY 13
+# define A_KEY 0
+# define S_KEY 1
+# define D_KEY 2
+# define ESC_KEY 53
+
 typedef	struct s_player
 {
-	int	x;
-	int	y;
+	int	position_x;
+	int	position_y;
+	int	collectable_checker;
 	int	moves_counter;
 	int	collectable_counter;
 	int	valid_exit;
+	int	direction;
 	
 }		t_player;
 
@@ -39,22 +48,27 @@ typedef	struct	s_map
 	int	collectable_counter;
 }		t_map;
 
+typedef struct s_window {
+	int		x;
+	int		y;
+	void	*mlx_win;
+}			t_window;
+
 typedef	struct s_game
 {
-	int	moves_counter;
-	int	collectable_counter;
-	int	player_checker;
-	int	collectable_checker;
-	int	exit_checker;
-	char **map;
+	int		moves_counter;
+	int		collectable_counter;
+	int		player_checker;
+	int		collectable_checker;
+	int		exit_checker;
+	int		dfs_collectable_counter;
+	int		winning_check;
+	char	**map;
+	void	*mlx;
 	t_player	player;
+	t_window	win;
 }		t_game;
     
-// typedef	struct	s_window
-// {
-	
-// }		t_window;
-
 
 int	main(int ac, char **av);
 int mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y);
@@ -66,4 +80,8 @@ char	*ft_strdup(const char *s1);
 char	*ft_get_line(const char *s, int c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(const char *s1, const char *s2);
+int		map_width(char *map_row);
+int		map_height(char **map);
+void	elements_checker(t_game *game);
+
 #endif
