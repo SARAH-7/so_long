@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:22 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/09 16:01:18 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/05/11 18:49:17 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef	struct s_game
 	int	player_checker;
 	int	collectable_checker;
 	int	exit_checker;
-	t_map	map;
+	char **map;
 	t_player	player;
 }		t_game;
     
@@ -59,7 +59,7 @@ typedef	struct s_game
 int	main(int ac, char **av);
 int mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y);
 int	file_parser(char *str);
-void	map_parser(int fd);
+char **map_parser(int fd);
 char	*get_next_line(int fd);
 char	*get_next_line(int fd);
 char	*ft_strdup(const char *s1);
