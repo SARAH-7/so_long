@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:15 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/11 22:07:43 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/05/15 22:00:17 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	main(int ac, char **av)
 {
 	int	fd;
     t_game game;
+	char	**marked_map;
 
 	if (ac != 2)
 		return (ft_printf("Enter Only Two Arguments\n"), 1);
@@ -76,16 +77,25 @@ int	main(int ac, char **av)
 		return (1);
 	initializer(&game);
 	elements_checker(&game);
-    // int i = 0;
+	if (game.map)
+	{
+		marked_map = dfs_marker(game.map);
+		dfs(&game, marked_map, game.player.position_x / DIM, game.player.position_y / DIM);
+		if (valid_path_check(game, marked_map) == 0)
+		{
+			return (ft_printf("There's No Valid Path\n", 1));
+		}
+	}
+    int i = 0;
     // while (game.map[i])
     //     i++;
     // game.map[i] = NULL;
     // i = 0;
-    // while (game.map[i] &&  game.map[i] != NULL)
-    // {
-    //     ft_printf("[%s]\n", game.map[i]);
-    //     i++;
-    // }
+    while (game.map[i] &&  game.map[i] != NULL)
+    {
+        ft_printf("[%s]\n", game.map[i]);
+        i++;
+    }
 	// test = map_parser(fd);
 	// ft_printf("[%s]\n", *test);
 }

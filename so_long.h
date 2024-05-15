@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:22 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/11 22:04:16 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/05/15 21:59:59 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,11 @@ typedef	struct s_game
 	t_player	player;
 	t_window	win;
 }		t_game;
-    
+
+typedef struct s_index {
+	int	i;
+	int	j;
+}			t_index;
 
 int	main(int ac, char **av);
 int mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y);
@@ -83,5 +87,8 @@ char	*ft_strjoin(const char *s1, const char *s2);
 int		map_width(char *map_row);
 int		map_height(char **map);
 void	elements_checker(t_game *game);
-
+char	**dfs_marker(char **map);
+void	dfs(t_game *game, char **mark_map, int j, int i);
+int	valid_path_check(t_game game, char **mark_map);
+void	free_map(char **map);
 #endif
