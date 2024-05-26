@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:22 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/15 21:59:59 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/05/26 17:00:25 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define D_KEY 2
 # define ESC_KEY 53
 
-typedef	struct s_player
+typedef struct s_player
 {
 	int	position_x;
 	int	position_y;
@@ -39,45 +39,53 @@ typedef	struct s_player
 	int	collectable_counter;
 	int	valid_exit;
 	int	direction;
-	
 }		t_player;
 
-typedef	struct	s_map
+typedef struct s_map
 {
 	int	moves_counter;
 	int	collectable_counter;
 }		t_map;
 
-typedef struct s_window {
+typedef struct s_window
+{
 	int		x;
 	int		y;
 	void	*mlx_win;
 }			t_window;
 
-typedef	struct s_game
+typedef struct s_image
 {
-	int		moves_counter;
-	int		collectable_counter;
-	int		player_checker;
-	int		collectable_checker;
-	int		exit_checker;
-	int		dfs_collectable_counter;
-	int		winning_check;
-	char	**map;
-	void	*mlx;
+	void	*img;
+	int		img_width;
+	int		img_height;
+}				t_image;
+
+typedef struct s_game
+{
+	int			moves_counter;
+	int			collectable_counter;
+	int			player_checker;
+	int			collectable_checker;
+	int			exit_checker;
+	int			dfs_collectable_counter;
+	int			winning_check;
+	char		**map;
+	void		*mlx;
+	t_image		album[6];
 	t_player	player;
 	t_window	win;
 }		t_game;
 
-typedef struct s_index {
+typedef struct s_index
+{
 	int	i;
 	int	j;
 }			t_index;
 
-int	main(int ac, char **av);
-int mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y);
-int	file_parser(char *str);
-char **map_parser(int fd);
+int		main(int ac, char **av);
+int		file_parser(char *str);
+char	**map_parser(int fd);
 char	*get_next_line(int fd);
 char	*get_next_line(int fd);
 char	*ft_strdup(const char *s1);
@@ -89,6 +97,11 @@ int		map_height(char **map);
 void	elements_checker(t_game *game);
 char	**dfs_marker(char **map);
 void	dfs(t_game *game, char **mark_map, int j, int i);
-int	valid_path_check(t_game game, char **mark_map);
+int		valid_path_check(t_game game, char **mark_map);
 void	free_map(char **map);
+int		destroy_game_pre(t_game *game);
+int		destroy_game_post(t_game *game);
+void	destroy_map(char **map);
+void	destroy_images(t_game *game);
+void	ft_draw_map(t_game game);
 #endif

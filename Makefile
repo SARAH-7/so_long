@@ -6,7 +6,7 @@
 #    By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/29 10:58:12 by sbakhit           #+#    #+#              #
-#    Updated: 2024/05/15 21:59:16 by sbakhit          ###   ########.fr        #
+#    Updated: 2024/05/26 17:26:16 by sbakhit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ MINILIBX = minilibx/libmlx.a
 
 NAME = $(SO_LONG)
 SOURCES = so_long.c file_parser.c map_parser.c get_next_line.c get_next_line_utils.c \
-map_checker.c freeing_functions.c dfs_marker.c valid_path.c\
+map_checker.c freeing_functions.c dfs_marker.c valid_path.c imgs_funcs.c map_draw.c\
 
 OBJECTS = $(SOURCES:.c=.o)
 
