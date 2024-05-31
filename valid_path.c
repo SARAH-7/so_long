@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:56:37 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/15 21:58:31 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/05/26 17:57:03 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	dfs(t_game *game, char **mark_map, int j, int i)
 		k++;
 	}
 }
+
 int	check_exit(t_game game, char **mark_map, int j, int i)
 {
 	t_index	neighbors[4];
@@ -66,6 +67,7 @@ int	check_exit(t_game game, char **mark_map, int j, int i)
 		return (0);
 	return (1);
 }
+
 int	valid_path_check(t_game game, char **mark_map)
 {
 	int	i;

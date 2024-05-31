@@ -6,32 +6,26 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:15 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/26 17:30:01 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/05/31 20:57:00 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	player_find(t_game *game)
+int	key_hook(int keycode, t_game *game)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->map[i] != NULL)
-	{
-		j = 0;
-		while (game->map[i][j] != '\0')
-		{
-			if (game->map[i][j] == 'P')
-			{
-				game->player.position_x = j * DIM;
-				game->player.position_y = i * DIM;
-			}
-			j++;
-		}
-		i++;
-	}
+	(void) game;
+	if (keycode == W_KEY)
+		move_up(game);
+	else if (keycode == A_KEY)
+		move_left(game);
+	else if (keycode == S_KEY)
+		move_down(game);
+	else if (keycode == D_KEY)
+		move_right(game);
+	else if (keycode == ESC_KEY)
+		destroy_game_post(game);
+	return (0);
 }
 
 void	initializer(t_game *game)
@@ -56,8 +50,11 @@ void	initializer(t_game *game)
 	player_find(game);
 }
 
-int	map_parsing_check(char **marked_map, t_game game)
+int	map_parsing_check(t_game game)
 {
+	char	**marked_map;
+
+	marked_map = NULL;
 	marked_map = dfs_marker(game.map);
 	dfs(&game, marked_map, game.player.position_x / DIM,
 		game.player.position_y / DIM);
@@ -70,11 +67,11 @@ int	main(int ac, char **av)
 {
 	int		fd;
 	t_game	game;
-	char	**marked_map;
+	// int		i;
 
+	// i = 0;
 	if (ac != 2)
 		return (ft_printf("Enter Only Two Arguments\n"), 1);
-	marked_map = NULL;
 	fd = open(av[1], O_RDONLY);
 	if (!file_parser(av[1]) || fd == -1)
 	{
@@ -87,23 +84,19 @@ int	main(int ac, char **av)
 	if (!game.map || !game.mlx)
 		return (1);
 	initializer(&game);
-	int i = 0;
-    while (game.map[i])
-        i++;
-    game.map[i] = NULL;
-	elements_checker(&game);
-	if (game.map)
+	if (game.map && !checker(&game))
 	{
-		if (!map_parsing_check(marked_map, game))
-			return (1);
+		ft_printf("Error! Invalid Map Entries\n");
+		exit(EXIT_FAILURE);
 	}
+	if (!map_parsing_check(game))
+		return (1);
+	load_images(&game);
+	imgmsg_loadcheck(&game);
 	mlx_hook(game.win.mlx_win, 17, 0L, destroy_game_post, &game);
 	ft_draw_map(game);
-	// ft_draw_tiles(game, game.player.dir);
-	// i = 0;
-	// while (game.map[i] && game.map[i] != NULL)
-	// {
-	// 	ft_printf("[%s]\n", game.map[i]);
-	// 	i++;
-	// }
+	ft_draw_tiles(game, game.player.direction);
+	mlx_key_hook(game.win.mlx_win, key_hook, &game);
+	mlx_loop(game.mlx);
+	return (0);
 }

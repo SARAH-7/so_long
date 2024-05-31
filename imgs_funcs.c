@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 00:45:39 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/26 04:47:05 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/05/28 13:42:46 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,18 @@ int	image_parser(t_game game)
 			return (0);
 		i++;
 	}
-	// i = 0;
-	// while (i < 2)
-	// {
-	// 	if (game.en_alb[i].img == NULL)
-	// 		return (0);
-	// 	i++;
-	// }
 	return (1);
 }
 
 void	imgmsg_loadcheck(t_game *game)
 {
-	if (image_parser(*game) == 0)
+	if (!image_parser(*game))
 	{
 		ft_printf("Error! Check all image files are present\n");
 		destroy_images(game);
 		mlx_destroy_window(game->mlx, game->win.mlx_win);
 		destroy_map(game->map);
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 }
 

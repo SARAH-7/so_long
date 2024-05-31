@@ -6,13 +6,13 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 21:31:51 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/11 22:00:54 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/05/27 20:17:00 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	elements_checker(t_game *game)
+int	checker(t_game *game)
 {
 	int	i;
 	int	j;
@@ -33,4 +33,9 @@ void	elements_checker(t_game *game)
 		}
 		i++;
 	}
+	if (game->player_checker == 1 && game->collectable_checker >= 1
+		&& game->exit_checker == 1)
+		return (1);
+	else
+		return (0);
 }
