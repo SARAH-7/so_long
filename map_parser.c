@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:10:31 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/31 20:49:32 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/01 22:06:04 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,49 @@ int	map_height(char **map)
 	while (map[i])
 		i++;
 	return (i);
+}
+
+void	check_for_walls(char **map, int map_height)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i] && map[i] != NULL)
+	{
+		j = 0;
+		if (i == 0 || i == map_height - 1)
+		{
+			while (i == 0 && map[i][j] != '\0')
+			{
+				if (map[i][j] != '1')
+				{
+					ft_printf("The Map isn't Fully Surrounded By Walls!\n");
+					exit(EXIT_FAILURE);
+				}
+				j++;
+			}
+		}
+		else
+		{
+			while (map[i][j] != '\0')
+			{
+				if ((j == 0 || j == (int)ft_strlen(map[i]) - 1)
+					&& map[i][j] != '1')
+				{
+					ft_printf("The Map isn't Fully Surrounded By Walls!\n");
+					exit(EXIT_FAILURE);
+				}
+				j++;
+			}
+		}
+		if (map[i + 1] != NULL && (int)ft_strlen(map[i]) != (int)ft_strlen(map[i + 1]))
+		{
+			ft_printf("Inconsistent Dimensions For Map!\n");
+			exit(EXIT_FAILURE);
+		}
+		i++;
+	}
 }
 
 char	**map_parser(int fd)
@@ -65,8 +108,8 @@ char	**map_parser(int fd)
 		if (line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = '\0';
 		ft_strlcpy(map[i++], line, (ft_strlen(line) + 1));
-		ft_printf("[%s]", map[i - 1]);
 		free(line);
 	}
+	check_for_walls(map, i);
 	return (close(fd), map);
 }

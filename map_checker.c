@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 21:31:51 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/27 20:17:00 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/01 16:43:37 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,15 @@ int	checker(t_game *game)
 		{
 			if (game->map[i][j] == 'P')
 				game->player_checker++;
-			if (game->map[i][j] == 'C')
+			else if (game->map[i][j] == 'C')
+			{
 				game->collectable_checker++;
-			if (game->map[i][j] == 'E')
+				game->collectable_counter++;
+			}
+			else if (game->map[i][j] == 'E')
 				game->exit_checker++;
+			else if (!(game->map[i][j] == '1' || game->map[i][j] == '0'))
+				return (0);
 			j++;
 		}
 		i++;

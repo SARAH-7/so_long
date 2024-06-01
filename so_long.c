@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:15 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/31 20:57:00 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/01 21:58:52 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ int	key_hook(int keycode, t_game *game)
 	(void) game;
 	if (keycode == W_KEY)
 		move_up(game);
-	else if (keycode == A_KEY)
-		move_left(game);
 	else if (keycode == S_KEY)
 		move_down(game);
 	else if (keycode == D_KEY)
 		move_right(game);
+	else if (keycode == A_KEY)
+		move_left(game);
 	else if (keycode == ESC_KEY)
 		destroy_game_post(game);
 	return (0);
@@ -38,6 +38,7 @@ void	initializer(t_game *game)
 	game->player_checker = 0;
 	game->exit_checker = 0;
 	game->collectable_checker = 0;
+	game->collectable_counter = 0;
 	game->dfs_collectable_counter = 0;
 	game->player.collectable_checker = 0;
 	game->player.moves_counter = 0;
@@ -50,7 +51,7 @@ void	initializer(t_game *game)
 	player_find(game);
 }
 
-int	map_parsing_check(t_game game)
+void	map_parsing_check(t_game game)
 {
 	char	**marked_map;
 
@@ -59,26 +60,25 @@ int	map_parsing_check(t_game game)
 	dfs(&game, marked_map, game.player.position_x / DIM,
 		game.player.position_y / DIM);
 	if (valid_path_check(game, marked_map) == 0)
-		return (ft_printf("There's No Valid Path\n", 0));
-	return (1);
+	{
+		ft_printf("There's No Valid Path.\n");
+		destroy_game_pre(&game);
+		exit(EXIT_FAILURE);
+	}
 }
 
 int	main(int ac, char **av)
 {
 	int		fd;
 	t_game	game;
-	// int		i;
 
-	// i = 0;
 	if (ac != 2)
-		return (ft_printf("Enter Only Two Arguments\n"), 1);
-	fd = open(av[1], O_RDONLY);
-	if (!file_parser(av[1]) || fd == -1)
-	{
-		if (!file_parser(av[1]))
-			close(fd);
+		return (ft_printf("Enter Only Two Arguments.\n"), 1);
+	if (!file_parser(av[1]))
 		return (ft_printf("Enter a Valid File\n"), 1);
-	}
+	fd = open(av[1], O_RDONLY);
+	if (fd == -1)
+		close(fd);
 	game.map = map_parser(fd);
 	game.mlx = mlx_init();
 	if (!game.map || !game.mlx)
@@ -86,11 +86,10 @@ int	main(int ac, char **av)
 	initializer(&game);
 	if (game.map && !checker(&game))
 	{
-		ft_printf("Error! Invalid Map Entries\n");
+		ft_printf("Error! Invalid Map Entries.\n");
 		exit(EXIT_FAILURE);
 	}
-	if (!map_parsing_check(game))
-		return (1);
+	map_parsing_check(game);
 	load_images(&game);
 	imgmsg_loadcheck(&game);
 	mlx_hook(game.win.mlx_win, 17, 0L, destroy_game_post, &game);
@@ -98,5 +97,5 @@ int	main(int ac, char **av)
 	ft_draw_tiles(game, game.player.direction);
 	mlx_key_hook(game.win.mlx_win, key_hook, &game);
 	mlx_loop(game.mlx);
-	return (0);
+	return (close(fd), 0);
 }

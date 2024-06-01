@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/26 00:45:39 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/28 13:42:46 by sbakhit          ###   ########.fr       */
+/*   Created: 2024/06/01 17:33:21 by sbakhit           #+#    #+#             */
+/*   Updated: 2024/06/01 17:33:25 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,21 @@ void	imgmsg_loadcheck(t_game *game)
 void	load_images(t_game *game)
 {
 	game->album[0].img = mlx_xpm_file_to_image(game->mlx,
-			"imgs/wall.xpm", &game->album[0].img_width,
+			"texture/wall.xpm", &game->album[0].img_width,
 			&game->album[0].img_height);
 	game->album[1].img = mlx_xpm_file_to_image(game->mlx,
-			"imgs/collectable.xpm", &game->album[1].img_width,
+			"texture/collectable.xpm", &game->album[1].img_width,
 			&game->album[1].img_height);
 	game->album[2].img = mlx_xpm_file_to_image(game->mlx,
-			"imgs/player_right.xpm", &game->album[2].img_width,
+			"texture/player_right.xpm", &game->album[2].img_width,
 			&game->album[2].img_height);
 	game->album[3].img = mlx_xpm_file_to_image(game->mlx,
-			"imgs/player_left.xpm", &game->album[3].img_width,
+			"texture/player_left.xpm", &game->album[3].img_width,
 			&game->album[3].img_height);
 	game->album[4].img = mlx_xpm_file_to_image(game->mlx,
-			"imgs/portal.xpm", &game->album[4].img_width,
+			"texture/portal.xpm", &game->album[4].img_width,
 			&game->album[4].img_height);
 	game->album[5].img = mlx_xpm_file_to_image(game->mlx,
-			"imgs/background.xpm", &game->album[5].img_width,
+			"texture/background.xpm", &game->album[5].img_width,
 			&game->album[5].img_height);
 }

@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 13:54:44 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/31 20:34:44 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/05/31 21:08:36 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,7 @@ char	*get_next_line(int fd)
 	static char	*remain;
 	char		*line;
 	int			bytes_read;
-	int			BUFFER_SIZE;
 
-	BUFFER_SIZE = 1;
 	line = NULL;
 	if (fd < 0 || (BUFFER_SIZE >= INT_MAX))
 		return (NULL);
