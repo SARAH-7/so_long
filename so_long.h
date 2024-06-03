@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:22 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/01 21:58:02 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/03 17:13:04 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_player
 {
 	int	position_x;
 	int	position_y;
-	int	collectable_checker;
 	int	moves_counter;
 	int	collectable_counter;
 	int	valid_exit;
@@ -70,7 +69,6 @@ typedef struct s_game
 	int			moves_counter;
 	int			collectable_counter;
 	int			player_checker;
-	int			collectable_checker;
 	int			exit_checker;
 	int			dfs_collectable_counter;
 	int			winning_check;

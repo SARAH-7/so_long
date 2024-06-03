@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:56:37 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/05/26 17:57:03 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/03 19:27:16 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	dfs(t_game *game, char **mark_map, int j, int i)
 	{
 		i = neighbors[k].i;
 		j = neighbors[k].j;
-		if (!(game->map[i][j] == '1' || game->map[i][j] == 'E')
+		if (!(game->map[i][j] == '1' || game->map[i][j] == '\0')
 			&& mark_map[i][j] == 'F')
 		{
 			dfs(game, mark_map, j, i);
@@ -42,14 +42,14 @@ void	dfs(t_game *game, char **mark_map, int j, int i)
 		k++;
 	}
 }
-
+// if ((j >= 0) && (j < 12) && (i >= 0) && (i < 5) && (game->map[i][j] != '1') && (game->map[i][j] != '\0') 
 int	check_exit(t_game game, char **mark_map, int j, int i)
 {
 	t_index	neighbors[4];
 	int		k;
 	int		untraversables;
 
-	if (game.dfs_collectable_counter != game.collectable_checker)
+	if (game.dfs_collectable_counter != game.collectable_counter)
 		return (0);
 	find_neighbors(j, i, neighbors);
 	k = 0;
@@ -58,8 +58,8 @@ int	check_exit(t_game game, char **mark_map, int j, int i)
 	{
 		i = neighbors[k].i;
 		j = neighbors[k].j;
-		if (game.map[i][j] == '1' ||
-			(game.map[i][j] != '1' && mark_map[i][j] == 'F'))
+		if (game.map[i][j] != '1' || (game.map[i][j] == 'E'
+			&& mark_map[i][j] == 'F'))
 			untraversables++;
 		k++;
 	}
@@ -84,6 +84,8 @@ int	valid_path_check(t_game game, char **mark_map)
 		{
 			if (game.map[i][j] == 'P' && mark_map[i][j] == 'T')
 				flag++;
+			if (game.map[i][j] == 'C' && mark_map[i][j] == 'T')
+				flag++;
 			if (game.map[i][j] == 'E'
 				&& check_exit(game, mark_map, j, i))
 				flag++;
@@ -91,6 +93,9 @@ int	valid_path_check(t_game game, char **mark_map)
 		}
 		i++;
 	}
+	// ft_printf("flag is %d\n", flag);
+	if (flag == 2 + game.collectable_counter)
+		return (free_map(mark_map), 1);
 	if (flag == 2)
 		return (free_map(mark_map), 1);
 	return (free_map(mark_map), 0);

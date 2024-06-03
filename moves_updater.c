@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 17:43:04 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/01 16:34:42 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/03 17:18:36 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	move_flag(t_game *game, int i, int j)
 {
 	if (game->map[i][j] == 'C')
 	{
-		game->player.collectable_checker++;
 		game->player.collectable_counter++;
 		game->map[i][j] = '0';
 		return (1);

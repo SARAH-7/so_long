@@ -6,7 +6,7 @@
 #    By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/29 10:58:12 by sbakhit           #+#    #+#              #
-#    Updated: 2024/06/01 22:08:46 by sbakhit          ###   ########.fr        #
+#    Updated: 2024/06/01 22:11:43 by sbakhit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ moves_updater.c player_moves.c\
 OBJECTS = $(SOURCES:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 LDFLAGS = -Llibft -Lft_printf -Lminilibx -lft -lftprintf -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)

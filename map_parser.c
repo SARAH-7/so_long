@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:10:31 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/01 22:06:04 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/02 18:59:53 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int	map_width(char *map_row)
 		return (0);
 	while (map_row[i])
 		i++;
+	if (i > 53)
+	{
+		ft_printf("You Exceed The Possible Window Width!");
+		exit(EXIT_FAILURE);
+	}
 	return (i);
 }
 
@@ -33,6 +38,11 @@ int	map_height(char **map)
 		return (0);
 	while (map[i])
 		i++;
+	if (i > 29)
+	{
+		ft_printf("You Exceed The Possible Window Height!");
+		exit(EXIT_FAILURE);
+	}
 	return (i);
 }
 
@@ -47,7 +57,7 @@ void	check_for_walls(char **map, int map_height)
 		j = 0;
 		if (i == 0 || i == map_height - 1)
 		{
-			while (i == 0 && map[i][j] != '\0')
+			while ((i == 0 && map[i][j] != '\0') || (i == map_height - 1 && map[i][j] != '\0'))
 			{
 				if (map[i][j] != '1')
 				{

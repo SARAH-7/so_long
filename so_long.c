@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:15 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/01 21:58:52 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/03 19:24:29 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,14 @@ void	initializer(t_game *game)
 	y = map_height(game->map);
 	game->player_checker = 0;
 	game->exit_checker = 0;
-	game->collectable_checker = 0;
 	game->collectable_counter = 0;
 	game->dfs_collectable_counter = 0;
-	game->player.collectable_checker = 0;
+	game->player.collectable_counter = 0;
 	game->player.moves_counter = 0;
 	game->player.direction = 0;
 	game->winning_check = 0;
 	game->win.x = x;
 	game->win.y = y;
-	game->win.mlx_win = mlx_new_window(game->mlx,
-			game->win.x * DIM, game->win.y * DIM, "sbakhit's So_Long");
 	player_find(game);
 }
 
@@ -78,18 +75,24 @@ int	main(int ac, char **av)
 		return (ft_printf("Enter a Valid File\n"), 1);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-		close(fd);
+	{
+		ft_printf("Error! Can't Open File.");
+		exit(EXIT_FAILURE);
+	}
 	game.map = map_parser(fd);
-	game.mlx = mlx_init();
-	if (!game.map || !game.mlx)
-		return (1);
 	initializer(&game);
+	map_parsing_check(game);
 	if (game.map && !checker(&game))
 	{
 		ft_printf("Error! Invalid Map Entries.\n");
 		exit(EXIT_FAILURE);
 	}
-	map_parsing_check(game);
+	game.mlx = mlx_init();
+	if (!game.map || !game.mlx)
+		return (1);
+	game.win.mlx_win = mlx_new_window(game.mlx,
+			game.win.x * DIM, game.win.y * DIM, "sbakhit's So_Long");
+	player_find(&game);
 	load_images(&game);
 	imgmsg_loadcheck(&game);
 	mlx_hook(game.win.mlx_win, 17, 0L, destroy_game_post, &game);
