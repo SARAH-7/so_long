@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:15 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/03 19:24:29 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/03 20:44:48 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	map_parsing_check(t_game game)
 	if (valid_path_check(game, marked_map) == 0)
 	{
 		ft_printf("There's No Valid Path.\n");
-		destroy_game_pre(&game);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -81,12 +80,12 @@ int	main(int ac, char **av)
 	}
 	game.map = map_parser(fd);
 	initializer(&game);
-	map_parsing_check(game);
 	if (game.map && !checker(&game))
 	{
 		ft_printf("Error! Invalid Map Entries.\n");
 		exit(EXIT_FAILURE);
 	}
+	map_parsing_check(game);
 	game.mlx = mlx_init();
 	if (!game.map || !game.mlx)
 		return (1);

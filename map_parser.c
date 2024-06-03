@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:10:31 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/02 18:59:53 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/03 20:00:24 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,14 @@ char	**map_parser(int fd)
 	map = NULL;
 	i = 0;
 	map = (char **)malloc(sizeof(char *) * (9999));
-	line = get_next_line(fd);
+		line = get_next_line(fd);
+	if (!map || !line)
+	{
+		// free(map); u suppose to free because u have an error
+		ft_printf("Error! Your Map is Empty.\n");
+		close(fd);
+		exit(0);
+	}
 	line[ft_strlen(line) - 1] = '\0';
 	if (!map || !line)
 		return (close(fd), NULL);

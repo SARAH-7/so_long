@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 21:31:51 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/03 19:12:52 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/03 20:46:38 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ int	checker(t_game *game)
 		&& game->exit_checker == 1)
 		return (1);
 	else
+	{
 		return (0);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:39:51 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/01 21:57:45 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/03 20:15:07 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	destroy_map(char **map)
 	int	i;
 
 	i = 0;
+	if (!map || !(*map))
+		return ;
 	while (map[i])
 	{
 		free(map[i]);

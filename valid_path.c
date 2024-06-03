@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:56:37 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/03 19:27:16 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/03 20:13:01 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,8 @@ int	valid_path_check(t_game game, char **mark_map)
 		}
 		i++;
 	}
-	// ft_printf("flag is %d\n", flag);
-	if (flag == 2 + game.collectable_counter)
-		return (free_map(mark_map), 1);
-	if (flag == 2)
+	if (flag == 2 + game.dfs_collectable_counter)
 		return (free_map(mark_map), 1);
 	return (free_map(mark_map), 0);
 }
+
