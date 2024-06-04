@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:39:51 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/03 20:15:07 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/05 01:39:37 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	free_map(char **map)
 	int	i;
 
 	i = 0;
+	if (!map || !(*map))
+		return ;
 	while (map[i])
 	{
 		free(map[i]);
@@ -41,25 +43,10 @@ void	destroy_images(t_game *game)
 	}
 }
 
-void	destroy_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	if (!map || !(*map))
-		return ;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
-
 void	destroy_game_pre(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win.mlx_win);
-	destroy_map(game->map);
+	free_map(game->map);
 }
 
 int	destroy_game_post(t_game *game)
@@ -68,8 +55,8 @@ int	destroy_game_post(t_game *game)
 		ft_printf("Game has exited\n");
 	else if (game->winning_check == 1)
 		ft_printf("Congrats! You have won\n");
+	free_map(game->map);
 	destroy_images(game);
 	mlx_destroy_window(game->mlx, game->win.mlx_win);
-	destroy_map(game->map);
 	exit(0);
 }

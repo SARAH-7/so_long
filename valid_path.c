@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:56:37 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/03 21:26:48 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/04 18:36:53 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,9 @@ int	valid_path_map_check(t_game game, char **mark_map, int i, int flag)
 int	valid_path_check(t_game game, char **mark_map)
 {
 	int	i;
-	int	j;
 	int	flag;
 
 	i = 0;
-	j = 0;
 	flag = 0;
 	while (game.map[i])
 	{

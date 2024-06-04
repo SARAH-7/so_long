@@ -6,7 +6,7 @@
 #    By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/29 10:58:12 by sbakhit           #+#    #+#              #
-#    Updated: 2024/06/03 21:45:43 by sbakhit          ###   ########.fr        #
+#    Updated: 2024/06/05 02:03:42 by sbakhit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,12 @@ OBJECTS = $(SOURCES:.c=.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+# LDFLAGS = -Llibft -Lft_printf -lft -lftprintf
 LDFLAGS = -Llibft -Lft_printf -Lminilibx -lft -lftprintf -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
+# $(NAME): $(OBJECTS) $(LIBFT) $(FT_PRINTF)
 $(NAME): $(OBJECTS) $(LIBFT) $(FT_PRINTF) $(MINILIBX)
 	$(CC) $(CFLAGS) $(OBJECTS) $(LDFLAGS) -o $(NAME)
 
@@ -41,6 +43,7 @@ $(MINILIBX):
 	make -C minilibx
 
 %.o: %.c
+	$(CC) $(CFLAGS) -Ilibft -Ift_printf -c $< -o $@
 	$(CC) $(CFLAGS) -Ilibft -Ift_printf -Iminilibx -c $< -o $@
 
 clean:

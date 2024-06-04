@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:15 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/03 22:12:42 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/05 02:25:44 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ int	key_hook(int keycode, t_game *game)
 
 void	game_initializer(t_game *game)
 {
-	int	x;
-	int	y;
-
-	x = map_width(game->map[0]);
-	y = map_height(game->map);
+	game->win.x = map_width(game->map[0]);
+	game->win.y = map_height(game->map);
+	if (game->win.x == 0 || game->win.y == 0)
+	{
+		free_map(game->map);
+		exit(EXIT_FAILURE);
+	}
 	game->player_checker = 0;
 	game->exit_checker = 0;
 	game->collectable_counter = 0;
@@ -43,8 +45,6 @@ void	game_initializer(t_game *game)
 	game->player.moves_counter = 0;
 	game->player.direction = 0;
 	game->winning_check = 0;
-	game->win.x = x;
-	game->win.y = y;
 	player_find(game);
 }
 
@@ -67,6 +67,7 @@ void	valid_path_checker(t_game game)
 	if (valid_path_check(game, marked_map) == 0)
 	{
 		ft_printf("There's No Valid Path.\n");
+		free_map(game.map);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -77,16 +78,22 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	if (ac != 2)
-		return (ft_printf("Enter Only Two Arguments.\n"), 1);
+		error_print_msg_pre_map(1);
 	if (!file_parser(av[1]))
-		return (ft_printf("Enter a Valid File\n"), 1);
+		error_print_msg_pre_map(2);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-		error_print_msg(1);
+		error_print_msg_pre_map(3);
 	game.map = map_parser(fd);
+	if (!game.map)
+		exit(EXIT_FAILURE);
 	game_initializer(&game);
-	if (game.map && !checker(&game))
+	if (!checker(&game))
+	{
 		error_print_msg(2);
+		free_map(game.map);
+		exit(EXIT_FAILURE);
+	}
 	valid_path_checker(game);
 	game.mlx = mlx_init();
 	if (!game.mlx)
@@ -97,5 +104,6 @@ int	main(int ac, char **av)
 	ft_draw_tiles(game, game.player.direction);
 	mlx_key_hook(game.win.mlx_win, key_hook, &game);
 	mlx_loop(game.mlx);
+	free_map(game.map);
 	return (close(fd), 0);
 }

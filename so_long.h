@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:22 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/03 21:41:16 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/05 02:31:04 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int		valid_path_check(t_game game, char **mark_map);
 void	free_map(char **map);
 void	destroy_game_pre(t_game *game);
 int		destroy_game_post(t_game *game);
-void	destroy_map(char **map);
+void	free_map(char **map);
 void	destroy_images(t_game *game);
 void	ft_draw_map(t_game game);
 int		move_up(t_game *game);
@@ -117,6 +117,7 @@ void	load_images(t_game *game);
 void	imgmsg_loadcheck(t_game *game);
 int		move_flag(t_game *game, int i, int j);
 void	update_game(t_game *game);
-void	error_print_msg(int error_num);
-void	check_for_walls(char **map, int map_height);
+void	error_print_msg_pre_map(int error_num);
+void	error_print_msg(int error_num, t_game *game);
+int		check_for_walls(char **map, int map_height);
 #endif
