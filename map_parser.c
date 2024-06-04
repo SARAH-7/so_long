@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:10:31 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/05 02:26:41 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/05 02:49:54 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,14 @@ char	**map_parser(int fd)
 	line = get_next_line(fd);
 	if (!map || !line)
 	{
-		error_print_msg(4);
-		free_map(map);
-		return (close(fd), NULL);
+		close(fd);
+		error_print_msg(6, map);
 	}
 	while (line != NULL)
 	{
 		map[i++] = assign_map(map, line, &i);
 		line = get_next_line(fd);
 	}
-	if (!check_for_walls(map, i))
-	{
-		free_map(map);
-		exit(EXIT_FAILURE);
-	}
+	check_for_walls(map, i);
 	return (close(fd), map);
 }

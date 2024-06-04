@@ -6,13 +6,13 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 21:31:51 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/03 21:13:37 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/05 02:46:21 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	checker(t_game *game)
+void	checker(t_game *game)
 {
 	int	i;
 	int	j;
@@ -30,13 +30,12 @@ int	checker(t_game *game)
 			else if (game->map[i][j] == 'E')
 				game->exit_checker++;
 			else if (!(game->map[i][j] == '1' || game->map[i][j] == '0'))
-				return (0);
+				error_print_msg(4, game->map);
 			j++;
 		}
 		i++;
 	}
-	if (game->player_checker == 1 && game->collectable_counter >= 1
-		&& game->exit_checker == 1)
-		return (1);
-	return (0);
+	if (!(game->player_checker == 1 && game->collectable_counter >= 1
+			&& game->exit_checker == 1))
+		error_print_msg(4, game->map);
 }

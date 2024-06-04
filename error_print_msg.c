@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 21:45:32 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/05 02:30:46 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/05 02:53:01 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,16 @@ void	error_print_msg_pre_map(int error_num)
 	exit(EXIT_FAILURE);
 }
 
-void	error_print_msg(int error_num, t_game *game)
+void	error_print_msg(int error_num, char **map)
 {
-	if (error_num == 2)
-		ft_printf("Error! Invalid Map Entries.\n");
-	if (error_num == 3)
-		ft_printf("The Map isn't Fully Surrounded By Walls!\n");
 	if (error_num == 4)
-		ft_printf("Inconsistent Dimensions For Map!\n");
+		ft_printf("Error! Invalid Map Entries.\n");
 	if (error_num == 5)
-	{
+		ft_printf("Inconsistent Dimensions For Map!\n");
+	if (error_num == 6)
 		ft_printf("Error! Your Map is Empty.\n");
-		free_map(game->map);
-		return ;
-	}
-	free_map(game->map);
+	if (error_num == 7)
+		ft_printf("There's No Valid Path.\n");
+	free_map(map);
 	exit(EXIT_FAILURE);
 }

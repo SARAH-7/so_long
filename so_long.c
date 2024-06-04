@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:15 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/05 02:25:44 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/05 03:00:52 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,7 @@ void	valid_path_checker(t_game game)
 	dfs(&game, marked_map, game.player.position_x / DIM,
 		game.player.position_y / DIM);
 	if (valid_path_check(game, marked_map) == 0)
-	{
-		ft_printf("There's No Valid Path.\n");
-		free_map(game.map);
-		exit(EXIT_FAILURE);
-	}
+		error_print_msg(7, game.map);
 }
 
 int	main(int ac, char **av)
@@ -85,15 +81,8 @@ int	main(int ac, char **av)
 	if (fd == -1)
 		error_print_msg_pre_map(3);
 	game.map = map_parser(fd);
-	if (!game.map)
-		exit(EXIT_FAILURE);
 	game_initializer(&game);
-	if (!checker(&game))
-	{
-		error_print_msg(2);
-		free_map(game.map);
-		exit(EXIT_FAILURE);
-	}
+	checker(&game);
 	valid_path_checker(game);
 	game.mlx = mlx_init();
 	if (!game.mlx)

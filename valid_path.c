@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:56:37 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/04 18:36:53 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/05 03:10:24 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	check_exit(t_game game, char **mark_map, int j, int i)
 	{
 		i = neighbors[k].i;
 		j = neighbors[k].j;
-		if (game.map[i][j] != '1' || (game.map[i][j] == 'E'
-			&& mark_map[i][j] == 'F'))
+		if (game.map[i][j] == '1' ||
+			(game.map[i][j] == 'E' && mark_map[i][j] == 'F'))
 			untraversables++;
 		k++;
 	}
@@ -81,7 +81,10 @@ int	valid_path_map_check(t_game game, char **mark_map, int i, int flag)
 			flag++;
 		if (game.map[i][j] == 'E'
 			&& check_exit(game, mark_map, j, i))
+		{
+			ft_printf("???\n");
 			flag++;
+		}
 		j++;
 	}
 	return (flag);

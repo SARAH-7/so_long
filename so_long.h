@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:22 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/05 02:31:04 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/05 02:44:53 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(const char *s1, const char *s2);
 int		map_width(char *map_row);
 int		map_height(char **map);
-int		checker(t_game *game);
+void	checker(t_game *game);
 void	map_parsing_check(t_game game);
 char	**dfs_marker(char **map);
 void	dfs(t_game *game, char **mark_map, int j, int i);
@@ -118,6 +118,6 @@ void	imgmsg_loadcheck(t_game *game);
 int		move_flag(t_game *game, int i, int j);
 void	update_game(t_game *game);
 void	error_print_msg_pre_map(int error_num);
-void	error_print_msg(int error_num, t_game *game);
-int		check_for_walls(char **map, int map_height);
+void	error_print_msg(int error_num, char **map);
+void	check_for_walls(char **map, int map_height);
 #endif
