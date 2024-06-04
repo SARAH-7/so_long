@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:22 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/03 17:13:04 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/03 21:41:16 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,6 @@ void	load_images(t_game *game);
 void	imgmsg_loadcheck(t_game *game);
 int		move_flag(t_game *game, int i, int j);
 void	update_game(t_game *game);
+void	error_print_msg(int error_num);
+void	check_for_walls(char **map, int map_height);
 #endif

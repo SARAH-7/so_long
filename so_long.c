@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:15 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/03 20:44:48 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/03 22:12:42 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	key_hook(int keycode, t_game *game)
 	return (0);
 }
 
-void	initializer(t_game *game)
+void	game_initializer(t_game *game)
 {
 	int	x;
 	int	y;
@@ -48,7 +48,15 @@ void	initializer(t_game *game)
 	player_find(game);
 }
 
-void	map_parsing_check(t_game game)
+void	window_initializer(t_game *game)
+{
+	game->win.mlx_win = mlx_new_window(game->mlx,
+			game->win.x * DIM, game->win.y * DIM, "sbakhit's So_Long");
+	load_images(game);
+	imgmsg_loadcheck(game);
+}
+
+void	valid_path_checker(t_game game)
 {
 	char	**marked_map;
 
@@ -74,26 +82,16 @@ int	main(int ac, char **av)
 		return (ft_printf("Enter a Valid File\n"), 1);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-	{
-		ft_printf("Error! Can't Open File.");
-		exit(EXIT_FAILURE);
-	}
+		error_print_msg(1);
 	game.map = map_parser(fd);
-	initializer(&game);
+	game_initializer(&game);
 	if (game.map && !checker(&game))
-	{
-		ft_printf("Error! Invalid Map Entries.\n");
-		exit(EXIT_FAILURE);
-	}
-	map_parsing_check(game);
+		error_print_msg(2);
+	valid_path_checker(game);
 	game.mlx = mlx_init();
-	if (!game.map || !game.mlx)
-		return (1);
-	game.win.mlx_win = mlx_new_window(game.mlx,
-			game.win.x * DIM, game.win.y * DIM, "sbakhit's So_Long");
-	player_find(&game);
-	load_images(&game);
-	imgmsg_loadcheck(&game);
+	if (!game.mlx)
+		exit(EXIT_FAILURE);
+	window_initializer(&game);
 	mlx_hook(game.win.mlx_win, 17, 0L, destroy_game_post, &game);
 	ft_draw_map(game);
 	ft_draw_tiles(game, game.player.direction);
