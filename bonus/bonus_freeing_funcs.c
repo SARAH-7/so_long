@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 01:36:06 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/11 06:47:14 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/11 19:45:26 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,18 @@ void	bonus_destroy_images(t_game *game)
 		}
 		mlx_destroy_image(game->mlx, game->album[i++].img);
 	}
-	i = 0;
-	while (i < 2)
+	if (game->enemy_checker != 0)
 	{
-		if (game->enemy_album[i].img == NULL)
+		i = 0;
+		while (i < 2)
 		{
-			i++;
-			continue ;
+			if (game->enemy_album[i].img == NULL)
+			{
+				i++;
+				continue ;
+			}
+			mlx_destroy_image(game->mlx, game->enemy_album[i++].img);
 		}
-		mlx_destroy_image(game->mlx, game->enemy_album[i++].img);
 	}
 }
 

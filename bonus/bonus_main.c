@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:58:18 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/11 10:00:08 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/21 15:03:14 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,15 @@ int	key_hook(int keycode, t_game *game)
 		res = move_right(game);
 	else if (keycode == ESC_KEY)
 		bonus_destroy_game_post(game);
+	else
+	{
+		ft_printf("Error\n");
+		return (1);
+	}
+	bonus_update_game(game);
 	if (res == 1)
 	{
-		ft_printf("You Youched an Enemy, You Died!\n");
+		ft_printf("You Touched an Enemy, You Died!\n");
 		bonus_destroy_game_post(game);
 	}
 	return (0);
@@ -62,26 +68,35 @@ void	game_initializer(t_game *game)
 
 void	window_initializer(t_game *game)
 {
+	int	j;
+
+	j = 0;
 	game->win.mlx_win = mlx_new_window(game->mlx,
 			game->win.x * DIM, game->win.y * DIM, "sbakhit's So_Long");
 	bonus_load_images(game);
+	load_enemy_images(game);
 	bonus_imgmsg_loadcheck(game);
+	while (game->map[0][j])
+	{
+		if (game->map[0][j] == '1')
+			mlx_put_image_to_window(game->mlx, game->win.mlx_win,
+				game->album[0].img, j * DIM, 0 * DIM);
+		j++;
+	}
 }
 
-void	valid_path_checker(t_game game)
+void	valid_path_checker(t_game *game)
 {
 	char	**marked_map;
 
-	marked_map = dfs_marker(game.map);
+	find_enemy(game);
+	marked_map = dfs_marker(game->map);
 	if (!marked_map)
-		error_print_msg(6, game.map);
-	dfs(&game, marked_map, game.player.position_x / DIM,
-		game.player.position_y / DIM);
-	// int	i = 0;
-	// while (marked_map[i])
-	// 	ft_printf("%s\n", marked_map[i++]);
+		error_print_msg(6, game->map);
+	dfs(game, marked_map, game->player.position_x / DIM,
+		game->player.position_y / DIM);
 	if (valid_path_check(game, marked_map) == 0)
-		error_print_msg(7, game.map);
+		error_print_msg(7, game->map);
 }
 
 int	main(int ac, char **av)
@@ -99,7 +114,7 @@ int	main(int ac, char **av)
 	game.map = map_parser(fd, av);
 	game_initializer(&game);
 	bonus_checker(&game);
-	valid_path_checker(game);
+	valid_path_checker(&game);
 	game.mlx = mlx_init();
 	if (!game.mlx)
 		exit(EXIT_FAILURE);

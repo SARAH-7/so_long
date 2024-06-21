@@ -6,11 +6,27 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 01:16:02 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/11 02:26:23 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/14 22:25:44 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+void	load_enemy_images(t_game *game)
+{
+	game->enemy_album[0].img = mlx_xpm_file_to_image(game->mlx,
+			"bonus/enemy_imgs/illager_left.xpm",
+			&game->enemy_album[0].img_width,
+			&game->enemy_album[0].img_height);
+	game->enemy_album[1].img = mlx_xpm_file_to_image(game->mlx,
+			"bonus/enemy_imgs/illager_right.xpm",
+			&game->enemy_album[1].img_width,
+			&game->enemy_album[1].img_height);
+	if (game->enemy_album[0].img == NULL)
+		ft_printf("hi\n");
+	if (game->enemy_album[1].img == NULL)
+		ft_printf("hi2\n");
+}
 
 int	bonus_image_parser(t_game game)
 {

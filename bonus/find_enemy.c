@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_checker.c                                      :+:      :+:    :+:   */
+/*   find_enemy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/11 21:31:51 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/08 20:59:55 by sbakhit          ###   ########.fr       */
+/*   Created: 2024/06/14 21:21:00 by sbakhit           #+#    #+#             */
+/*   Updated: 2024/06/14 21:49:15 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
-void	checker(t_game *game)
+void	enemy_pos(t_game *game, int i, int j)
+{
+	int	k;
+
+	k = 0;
+	while (k < 4)
+	{
+		if (game->map[i][j - k] == '1' || game->map[i][j - k] == 'C')
+		{
+			ft_printf("Enemy Within 3 Spaces of a Wall or a Collectable\n");
+			bonus_free_map(game->map);
+			exit(EXIT_SUCCESS);
+		}
+		k++;
+	}
+}
+
+void	find_enemy(t_game *game)
 {
 	int	i;
 	int	j;
@@ -23,19 +40,13 @@ void	checker(t_game *game)
 		j = 0;
 		while (game->map[i][j])
 		{
-			if (game->map[i][j] == 'P')
-				game->player_checker++;
-			else if (game->map[i][j] == 'C')
-				game->collectable_counter++;
-			else if (game->map[i][j] == 'E')
-				game->exit_checker++;
-			else if (!(game->map[i][j] == '1' || game->map[i][j] == '0'))
-				error_print_msg(4, game->map);
+			if (game->map[i][j] == 'N')
+			{
+				enemy_pos(game, i, j);
+				game->enemy_checker++;
+			}
 			j++;
 		}
 		i++;
 	}
-	if (!(game->player_checker == 1 && game->collectable_counter >= 1
-			&& game->exit_checker == 1))
-		error_print_msg(4, game->map);
 }

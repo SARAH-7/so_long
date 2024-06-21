@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:15 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/05 03:00:52 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/11 13:09:37 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ void	game_initializer(t_game *game)
 {
 	game->win.x = map_width(game->map[0]);
 	game->win.y = map_height(game->map);
-	if (game->win.x == 0 || game->win.y == 0)
+	if (game->win.x == 0 || game->win.y == 0 || (game->win.x == game->win.y))
 	{
-		free_map(game->map);
+		if (game->win.x == game->win.y)
+			error_print_msg(8, game->map);
 		exit(EXIT_FAILURE);
 	}
 	game->player_checker = 0;
@@ -64,7 +65,7 @@ void	valid_path_checker(t_game game)
 	marked_map = dfs_marker(game.map);
 	dfs(&game, marked_map, game.player.position_x / DIM,
 		game.player.position_y / DIM);
-	if (valid_path_check(game, marked_map) == 0)
+	if (valid_path_check(&game, marked_map) == 0)
 		error_print_msg(7, game.map);
 }
 
@@ -80,7 +81,7 @@ int	main(int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		error_print_msg_pre_map(3);
-	game.map = map_parser(fd);
+	game.map = map_parser(fd, av);
 	game_initializer(&game);
 	checker(&game);
 	valid_path_checker(game);

@@ -6,26 +6,11 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:39:51 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/05 01:39:37 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/11 07:42:37 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	if (!map || !(*map))
-		return ;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
 
 void	destroy_images(t_game *game)
 {
@@ -52,9 +37,9 @@ void	destroy_game_pre(t_game *game)
 int	destroy_game_post(t_game *game)
 {
 	if (game->winning_check == 0)
-		ft_printf("Game has exited\n");
+		ft_printf("Game Has Exited.\n");
 	else if (game->winning_check == 1)
-		ft_printf("Congrats! You have won\n");
+		ft_printf("Congrats! Now Let's Make More Crafts Inside!\n");
 	free_map(game->map);
 	destroy_images(game);
 	mlx_destroy_window(game->mlx, game->win.mlx_win);

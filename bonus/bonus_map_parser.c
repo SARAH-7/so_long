@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser.c                                       :+:      :+:    :+:   */
+/*   bonus_map_parser.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/07 18:10:31 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/11 09:58:14 by sbakhit          ###   ########.fr       */
+/*   Created: 2024/06/11 13:51:22 by sbakhit           #+#    #+#             */
+/*   Updated: 2024/06/14 21:18:11 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	map_width(char *map_row)
 {
@@ -24,7 +24,7 @@ int	map_width(char *map_row)
 	if (i > 53)
 	{
 		ft_printf("You Exceed The Possible Window Width!\n");
-		return (0);
+		exit(0);
 	}
 	return (i);
 }
@@ -41,7 +41,7 @@ int	map_height(char **map)
 	if (i > 29)
 	{
 		ft_printf("You Exceed The Possible Window Height!\n");
-		return (0);
+		exit (0);
 	}
 	return (i);
 }
@@ -58,30 +58,6 @@ char	*assign_map(char **map, char *line, int *i)
 	return (map[(*i)]);
 }
 
-int	fd_map_height(int fd)
-{
-	char	*line;
-	int		i;
-
-	line = NULL;
-	i = 0;
-	line = get_next_line(fd);
-	if (line)
-		i++;
-	while (line)
-	{
-		line = get_next_line(fd);
-		if (line)
-			i++;
-	}
-	if (i > 29)
-	{
-		ft_printf("You Exceed The Possible Window Height!\n");
-		return (0);
-	}
-	return (i);
-}
-
 char	**map_parser(int fd, char **av)
 {
 	char	*line;
@@ -90,7 +66,7 @@ char	**map_parser(int fd, char **av)
 
 	line = NULL;
 	i = 0;
-	map = ft_calloc(sizeof(char *), fd_map_height(fd) + 1);
+	map = ft_calloc(sizeof(char *), 9999);
 	close(fd);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)

@@ -6,7 +6,7 @@
 #    By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/29 10:58:12 by sbakhit           #+#    #+#              #
-#    Updated: 2024/06/11 07:42:54 by sbakhit          ###   ########.fr        #
+#    Updated: 2024/06/14 21:28:52 by sbakhit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,9 @@ BONUS_DIR = bonus
 
 B_SOURCES = $(addprefix $(BONUS_DIR)/,bonus_main.c bonus_map_checker.c bonus_img_func.c \
 bonus_map_draw.c bonus_moves_updater.c bonus_enemy_funcs.c bonus_enemy_kill_func.c \
-bonus_freeing_funcs.c bonus_player_moves.c) file_parser.c dfs_marker.c valid_path.c \
-error_print_msg.c map_entries.c map_parser.c get_next_line.c get_next_line_utils.c \
-shared_func.c
+bonus_freeing_funcs.c bonus_player_moves.c bonus_valid_path.c bonus_shared_func.c \
+bonus_map_parser.c bonus_map_entries.c bonus_file_parser.c bonus_checker.c bonus_dfs_marker.c \
+find_enemy.c) error_print_msg.c get_next_line.c get_next_line_utils.c
 
 OBJECTS = $(SOURCES:.c=.o)
 BONUS_OBJS = $(B_SOURCES:.c=.o)

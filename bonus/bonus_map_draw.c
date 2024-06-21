@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 01:08:41 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/11 02:29:10 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/21 15:03:02 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ void	enemy_put_image(t_game game, int i, int j, int flag)
 
 void	bonus_put_image(t_game game, int i, int j, int flag)
 {
-	if (game.map[i][j] == '1')
+	if (game.map[i][j] == '1' && i != 0)
 		mlx_put_image_to_window(game.mlx, game.win.mlx_win,
 			game.album[0].img, j * DIM, i * DIM);
 	if (game.map[i][j] == 'C')
 		mlx_put_image_to_window(game.mlx, game.win.mlx_win,
 			game.album[1].img, j * DIM, i * DIM);
-	if (game.map[i][j] == 'P' && flag == 0)
+	if (game.map[i][j] == 'P' && (flag == 0 || flag == 2 || flag == 3))
 		mlx_put_image_to_window(game.mlx, game.win.mlx_win,
 			game.album[2].img, j * DIM, i * DIM);
 	if (game.map[i][j] == 'P' && flag == 1)

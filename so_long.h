@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:22 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/05 02:44:53 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/20 14:56:11 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ typedef struct s_index
 
 int		main(int ac, char **av);
 int		file_parser(const char *str);
-char	**map_parser(int fd);
+char	**map_parser(int fd, char **av);
 char	*get_next_line(int fd);
 char	*get_next_line(int fd);
 char	*ft_strdup(const char *s1);
@@ -100,17 +100,16 @@ void	checker(t_game *game);
 void	map_parsing_check(t_game game);
 char	**dfs_marker(char **map);
 void	dfs(t_game *game, char **mark_map, int j, int i);
-int		valid_path_check(t_game game, char **mark_map);
+int		valid_path_check(t_game *game, char **mark_map);
 void	free_map(char **map);
 void	destroy_game_pre(t_game *game);
 int		destroy_game_post(t_game *game);
-void	free_map(char **map);
 void	destroy_images(t_game *game);
 void	ft_draw_map(t_game game);
-int		move_up(t_game *game);
-int		move_left(t_game *game);
-int		move_down(t_game *game);
-int		move_right(t_game *game);
+void	move_up(t_game *game);
+void	move_left(t_game *game);
+void	move_down(t_game *game);
+void	move_right(t_game *game);
 void	player_find(t_game *game);
 void	ft_draw_tiles(t_game game, int flag);
 void	load_images(t_game *game);

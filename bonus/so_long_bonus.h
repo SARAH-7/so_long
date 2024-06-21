@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:59:32 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/11 09:55:50 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/20 16:46:39 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	player_find(t_game *game);
 void	map_parsing_check(t_game game);
 char	**dfs_marker(char **map);
 void	dfs(t_game *game, char **mark_map, int j, int i);
-int		valid_path_check(t_game game, char **mark_map);
+int		valid_path_check(t_game *game, char **mark_map);
 void	bonus_free_map(char **map);
 void	bonus_destroy_game_pre(t_game *game);
 int		bonus_destroy_game_post(t_game *game);
@@ -128,5 +128,11 @@ void	check_for_walls(char **map, int map_height);
 void	enemy_put_image(t_game game, int i, int j, int flag);
 int		move_animation(t_game *game);
 int		enemy_kill(t_game *game);
+void	find_enemy(t_game *game);
+void	load_enemy_images(t_game *game);
 
+void	dfs(t_game *game, char **mark_map, int j, int i);
+int		valid_path_check(t_game *game, char **mark_map);
+
+void	free_map(char **map);
 #endif

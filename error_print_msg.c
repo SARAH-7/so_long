@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 21:45:32 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/05 02:53:01 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/11 00:18:24 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	error_print_msg(int error_num, char **map)
 		ft_printf("Error! Your Map is Empty.\n");
 	if (error_num == 7)
 		ft_printf("There's No Valid Path.\n");
+	if (error_num == 8)
+		ft_printf("Map Must Be Rectangle.\n");
 	free_map(map);
 	exit(EXIT_FAILURE);
 }

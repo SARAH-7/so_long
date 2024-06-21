@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 01:24:22 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/11 07:20:26 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/21 14:44:11 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	bonus_move_flag(t_game *game, int i, int j)
 	}
 	if (game->map[i][j] == '1')
 		return (0);
+	if (game->map[i][j] == 'N')
+		return (4);
 	if (game->map[i][j] == 'E' && (game->player.collectable_counter
 		!= game->collectable_counter))
 		return (3);
