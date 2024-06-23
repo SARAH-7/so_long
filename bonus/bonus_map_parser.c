@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:51:22 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/14 21:18:11 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/23 17:21:43 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,30 @@ char	*assign_map(char **map, char *line, int *i)
 	return (map[(*i)]);
 }
 
+int	fd_map_height(int fd)
+{
+	char	*line;
+	int		i;
+
+	line = NULL;
+	i = 0;
+	line = get_next_line(fd);
+	if (line)
+		i++;
+	while (line)
+	{
+		line = get_next_line(fd);
+		if (line)
+			i++;
+	}
+	if (i > 29)
+	{
+		ft_printf("You Exceed The Possible Window Height!\n");
+		exit(EXIT_FAILURE);
+	}
+	return (i);
+}
+
 char	**map_parser(int fd, char **av)
 {
 	char	*line;
@@ -66,7 +90,7 @@ char	**map_parser(int fd, char **av)
 
 	line = NULL;
 	i = 0;
-	map = ft_calloc(sizeof(char *), 9999);
+	map = ft_calloc(sizeof(char *), fd_map_height(fd) + 1);
 	close(fd);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)

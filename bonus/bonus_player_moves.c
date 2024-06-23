@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 01:28:41 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/21 14:32:07 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/21 21:32:47 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	move_up(t_game *game)
 	}
 	else if (move_result == 4)
 		return (1);
-	// bonus_update_game(game);
 	return (0);
 }
 
@@ -77,7 +76,6 @@ int	move_left(t_game *game)
 	}
 	else if (move_result == 4)
 		return (1);
-	// bonus_update_game(game);
 	return (0);
 }
 
@@ -107,7 +105,6 @@ int	move_down(t_game *game)
 	}
 	else if (move_result == 4)
 		return (1);
-	// bonus_update_game(game);
 	return (0);
 }
 
@@ -138,6 +135,5 @@ int	move_right(t_game *game)
 	}
 	else if (move_result == 4)
 		return (1);
-	// bonus_update_game(game);
 	return (0);
 }
