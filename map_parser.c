@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:10:31 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/11 09:58:14 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/23 17:21:28 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	map_height(char **map)
 	if (i > 29)
 	{
 		ft_printf("You Exceed The Possible Window Height!\n");
-		return (0);
+		exit(EXIT_FAILURE);
 	}
 	return (i);
 }
@@ -77,7 +77,7 @@ int	fd_map_height(int fd)
 	if (i > 29)
 	{
 		ft_printf("You Exceed The Possible Window Height!\n");
-		return (0);
+		exit(EXIT_FAILURE);
 	}
 	return (i);
 }
