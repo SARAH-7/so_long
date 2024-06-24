@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 01:28:41 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/21 21:32:47 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/24 19:07:31 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	move_wall(t_game *game, int i, int j, int flag)
 	bonus_ft_draw_tiles(*game, flag);
 }
 
-int	move_up(t_game *game)
+void	move_up(t_game *game)
 {
 	int		i;
 	int		j;
@@ -37,19 +37,11 @@ int	move_up(t_game *game)
 		game->map[i][j] = 'P';
 		game->map[i + 1][j] = '0';
 	}
-	if (move_result == 3)
-		ft_printf("First, Eat All the Meat!\n");
-	else if (move_result == 2)
-	{
-		game->winning_check = 1;
-		bonus_destroy_game_post(game);
-	}
-	else if (move_result == 4)
-		return (1);
-	return (0);
+	else
+		ft_common(game, move_result);
 }
 
-int	move_left(t_game *game)
+void	move_left(t_game *game)
 {
 	int		i;
 	int		j;
@@ -67,19 +59,11 @@ int	move_left(t_game *game)
 		game->map[i][j] = 'P';
 		game->map[i][j + 1] = '0';
 	}
-	if (move_result == 3)
-		ft_printf("First, Eat All the Meat!\n");
-	else if (move_result == 2)
-	{
-		game->winning_check = 1;
-		bonus_destroy_game_post(game);
-	}
-	else if (move_result == 4)
-		return (1);
-	return (0);
+	else
+		ft_common(game, move_result);
 }
 
-int	move_down(t_game *game)
+void	move_down(t_game *game)
 {
 	int		i;
 	int		j;
@@ -96,19 +80,11 @@ int	move_down(t_game *game)
 		game->map[i][j] = 'P';
 		game->map[i - 1][j] = '0';
 	}
-	if (move_result == 3)
-		ft_printf("First, Eat All the Meat!\n");
-	else if (move_result == 2)
-	{
-		game->winning_check = 1;
-		bonus_destroy_game_post(game);
-	}
-	else if (move_result == 4)
-		return (1);
-	return (0);
+	else
+		ft_common(game, move_result);
 }
 
-int	move_right(t_game *game)
+void	move_right(t_game *game)
 {
 	int		i;
 	int		j;
@@ -126,14 +102,6 @@ int	move_right(t_game *game)
 		game->map[i][j] = 'P';
 		game->map[i][j - 1] = '0';
 	}
-	if (move_result == 3)
-		ft_printf("First, Eat All the Meat!\n");
-	else if (move_result == 2)
-	{
-		game->winning_check = 1;
-		bonus_destroy_game_post(game);
-	}
-	else if (move_result == 4)
-		return (1);
-	return (0);
+	else
+		ft_common(game, move_result);
 }

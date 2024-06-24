@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:56:37 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/23 17:28:49 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/24 17:22:33 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	dfs(t_game *game, char **mark_map, int j, int i)
 		i = neighbors[k].i;
 		j = neighbors[k].j;
 		if (i >= 0 && j >= 0 && i < game->win.y
-			&& j < game->win.x && !(game->map[i][j] == '1'
-			|| game->map[i][j] == 'E' || game->map[i][j] != '\0')
-			&& mark_map[i][j] == 'F')
+			&& j < game->win.x && (!(game->map[i][j] == '1'
+				|| game->map[i][j] == 'E' || game->map[i][j] == '\0')
+			&& mark_map[i][j] == 'F'))
 			dfs(game, mark_map, j, i);
 		k++;
 	}

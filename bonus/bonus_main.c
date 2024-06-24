@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:58:18 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/21 21:32:24 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/24 19:07:34 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,14 @@
 
 int	key_hook(int keycode, t_game *game)
 {
-	int		res;
-
-	res = 0;
 	if (keycode == W_KEY)
-		res = move_up(game);
+		move_up(game);
 	else if (keycode == A_KEY)
-		res = move_left(game);
+		move_left(game);
 	else if (keycode == S_KEY)
-		res = move_down(game);
+		move_down(game);
 	else if (keycode == D_KEY)
-		res = move_right(game);
+		move_right(game);
 	else if (keycode == ESC_KEY)
 		bonus_destroy_game_post(game);
 	else
@@ -33,11 +30,6 @@ int	key_hook(int keycode, t_game *game)
 		return (1);
 	}
 	bonus_update_game(game);
-	if (res == 1)
-	{
-		ft_printf("You Touched an Enemy, You Died!\n");
-		bonus_destroy_game_post(game);
-	}
 	return (0);
 }
 
@@ -121,7 +113,6 @@ int	main(int ac, char **av)
 	window_initializer(&game);
 	mlx_hook(game.win.mlx_win, 17, 0L, bonus_destroy_game_post, &game);
 	bonus_ft_draw_map(game);
-	bonus_ft_draw_tiles(game, game.player.direction);
 	mlx_key_hook(game.win.mlx_win, key_hook, &game);
 	mlx_loop_hook(game.mlx, move_animation, &game);
 	mlx_loop(game.mlx);

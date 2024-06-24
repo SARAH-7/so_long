@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:59:32 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/20 16:46:39 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/24 19:34:36 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <unistd.h>
 # include <string.h> 
 # include <stdarg.h>
-# include "libft/libft.h"
-# include "ft_printf/ft_printf.h"
-# include "minilibx/mlx.h"
+# include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
+# include "../minilibx/mlx.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <limits.h>
@@ -112,10 +112,10 @@ void	bonus_destroy_game_pre(t_game *game);
 int		bonus_destroy_game_post(t_game *game);
 void	bonus_destroy_images(t_game *game);
 void	bonus_ft_draw_map(t_game game);
-int		move_up(t_game *game);
-int		move_left(t_game *game);
-int		move_down(t_game *game);
-int		move_right(t_game *game);
+void	move_up(t_game *game);
+void	move_left(t_game *game);
+void	move_down(t_game *game);
+void	move_right(t_game *game);
 void	bonus_player_find(t_game *game);
 void	bonus_ft_draw_tiles(t_game game, int flag);
 void	bonus_load_images(t_game *game);
@@ -135,4 +135,5 @@ void	dfs(t_game *game, char **mark_map, int j, int i);
 int		valid_path_check(t_game *game, char **mark_map);
 
 void	free_map(char **map);
+void	ft_common(t_game *game, int move_result);
 #endif
