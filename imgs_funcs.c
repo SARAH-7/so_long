@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 17:33:21 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/05 01:38:54 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/28 12:37:36 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	imgmsg_loadcheck(t_game *game)
 		ft_printf("Error! Check all image files are present\n");
 		destroy_images(game);
 		mlx_destroy_window(game->mlx, game->win.mlx_win);
+		free(game->mlx);
 		free_map(game->map);
 		exit(EXIT_FAILURE);
 	}

@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 01:36:06 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/11 19:45:26 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/28 12:39:12 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	bonus_destroy_images(t_game *game)
 void	bonus_destroy_game_pre(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win.mlx_win);
+	free(game->mlx);
 	bonus_free_map(game->map);
 }
 
@@ -71,5 +72,6 @@ int	bonus_destroy_game_post(t_game *game)
 	bonus_free_map(game->map);
 	bonus_destroy_images(game);
 	mlx_destroy_window(game->mlx, game->win.mlx_win);
+	free(game->mlx);
 	exit(0);
 }

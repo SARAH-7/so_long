@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 17:43:04 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/11 03:17:14 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/24 21:11:46 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ void	update_game(t_game *game)
 {
 	game->player.moves_counter++;
 	player_find(game);
-	ft_draw_tiles(*game, game->player.direction);
+	ft_draw_tiles(*game);
 	ft_printf("Moves: %d\n", game->player.moves_counter);
 }

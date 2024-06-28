@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 01:24:22 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/21 14:44:11 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/28 12:07:51 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	bonus_update_game(t_game *game)
 
 	game->player.moves_counter++;
 	bonus_player_find(game);
-	bonus_ft_draw_tiles(*game, game->player.direction);
+	bonus_ft_draw_tiles(*game);
 	moves = ft_itoa(game->player.moves_counter);
 	mlx_put_image_to_window(game->mlx, game->win.mlx_win,
 		game->album[0].img, (game->win.x / 2) * DIM + DIM, 0);

@@ -6,21 +6,14 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 01:08:41 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/24 17:46:57 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/28 16:49:38 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	enemy_put_image(t_game game, int i, int j, int flag)
+void	enemy_put_image(t_game game, int i, int j)
 {
-	(void) flag;
-	if (game.map[i][j] == 'E')
-		mlx_put_image_to_window(game.mlx, game.win.mlx_win,
-			game.album[4].img, j * DIM, i * DIM);
-	if (game.map[i][j] == '0')
-		mlx_put_image_to_window(game.mlx, game.win.mlx_win,
-			game.album[5].img, j * DIM, i * DIM);
 	if (game.map[i][j] == 'N' && game.enemy_direction == 0)
 		mlx_put_image_to_window(game.mlx, game.win.mlx_win,
 			game.enemy_album[0].img, j * DIM, i * DIM);
@@ -29,7 +22,7 @@ void	enemy_put_image(t_game game, int i, int j, int flag)
 			game.enemy_album[1].img, j * DIM, i * DIM);
 }
 
-void	bonus_put_image(t_game game, int i, int j, int flag)
+void	bonus_put_image(t_game game, int i, int j)
 {
 	if (game.map[i][j] == '1' && i != 0)
 		mlx_put_image_to_window(game.mlx, game.win.mlx_win,
@@ -37,10 +30,11 @@ void	bonus_put_image(t_game game, int i, int j, int flag)
 	if (game.map[i][j] == 'C')
 		mlx_put_image_to_window(game.mlx, game.win.mlx_win,
 			game.album[1].img, j * DIM, i * DIM);
-	if (game.map[i][j] == 'P' && (flag == 0 || flag == 2 || flag == 3))
+	if (game.map[i][j] == 'P' && (game.player.direction == 0
+		|| game.player.direction == 2 || game.player.direction == 3))
 		mlx_put_image_to_window(game.mlx, game.win.mlx_win,
 			game.album[2].img, j * DIM, i * DIM);
-	if (game.map[i][j] == 'P' && flag == 1)
+	if (game.map[i][j] == 'P' && game.player.direction == 1)
 		mlx_put_image_to_window(game.mlx, game.win.mlx_win,
 			game.album[3].img, j * DIM, i * DIM);
 	if (game.map[i][j] == 'E')
@@ -51,7 +45,7 @@ void	bonus_put_image(t_game game, int i, int j, int flag)
 			game.album[5].img, j * DIM, i * DIM);
 }
 
-void	bonus_ft_draw_tiles(t_game game, int flag)
+void	bonus_ft_draw_tiles(t_game game)
 {
 	int		i;
 	int		j;
@@ -62,8 +56,8 @@ void	bonus_ft_draw_tiles(t_game game, int flag)
 		j = 0;
 		while (game.map[i][j])
 		{
-			bonus_put_image(game, i, j, flag);
-			enemy_put_image(game, i, j, flag);
+			bonus_put_image(game, i, j);
+			enemy_put_image(game, i, j);
 			j++;
 		}
 		i++;
@@ -88,5 +82,5 @@ void	bonus_ft_draw_map(t_game game)
 		}
 		i++;
 	}
-	bonus_ft_draw_tiles(game, game.player.direction);
+	bonus_ft_draw_tiles(game);
 }

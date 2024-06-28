@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 01:16:02 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/24 19:40:25 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/28 12:39:17 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	load_enemy_images(t_game *game)
 {
 	game->enemy_album[0].img = mlx_xpm_file_to_image(game->mlx,
-			"bonus/texture/illager_left.xpm",
+			"bonus/texture/sprite_left.xpm",
 			&game->enemy_album[0].img_width,
 			&game->enemy_album[0].img_height);
 	game->enemy_album[1].img = mlx_xpm_file_to_image(game->mlx,
-			"bonus/texture/illager_right.xpm",
+			"bonus/texture/sprite_right.xpm",
 			&game->enemy_album[1].img_width,
 			&game->enemy_album[1].img_height);
 }
@@ -52,6 +52,7 @@ void	bonus_imgmsg_loadcheck(t_game *game)
 		ft_printf("Error! Check all image files are present\n");
 		bonus_destroy_images(game);
 		mlx_destroy_window(game->mlx, game->win.mlx_win);
+		free(game->mlx);
 		bonus_free_map(game->map);
 		exit(EXIT_FAILURE);
 	}

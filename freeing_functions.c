@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:39:51 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/11 07:42:37 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/28 12:38:57 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	destroy_images(t_game *game)
 void	destroy_game_pre(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win.mlx_win);
+	free(game->mlx);
 	free_map(game->map);
 }
 
@@ -43,5 +44,6 @@ int	destroy_game_post(t_game *game)
 	free_map(game->map);
 	destroy_images(game);
 	mlx_destroy_window(game->mlx, game->win.mlx_win);
+	free(game->mlx);
 	exit(0);
 }

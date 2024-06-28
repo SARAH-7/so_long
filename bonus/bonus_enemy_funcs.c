@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 01:38:54 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/11 02:27:12 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/26 09:05:11 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	move_back(t_game *game, int i, int j)
 	{
 		game->map[i][j] = '0';
 		game->map[i][j + 1] = 'N';
-		bonus_ft_draw_tiles(*game, game->player.direction);
+		bonus_ft_draw_tiles(*game);
 		steps_back++;
 	}
 }
@@ -47,7 +47,7 @@ void	move_enemy(t_game *game, int i, int j)
 	{
 		game->map[i][j] = '0';
 		game->map[i][j - 1] = 'N';
-		bonus_ft_draw_tiles(*game, game->player.direction);
+		bonus_ft_draw_tiles(*game);
 		steps++;
 	}
 }

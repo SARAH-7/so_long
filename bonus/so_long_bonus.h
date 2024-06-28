@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:59:32 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/24 19:34:36 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/28 17:06:47 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int		main(int ac, char **av);
 int		file_parser(const char *str);
 char	**map_parser(int fd, char **av);
 char	*get_next_line(int fd);
-char	*get_next_line(int fd);
 char	*ft_strdup(const char *s1);
 char	*ft_get_line(const char *s, int c);
 char	*ft_strchr(const char *s, int c);
@@ -102,6 +101,8 @@ char	*ft_strjoin(const char *s1, const char *s2);
 int		map_width(char *map_row);
 int		map_height(char **map);
 void	bonus_checker(t_game *game);
+void	bonus_ft_draw_map(t_game game);
+void	bonus_ft_draw_tiles(t_game game);
 void	player_find(t_game *game);
 void	map_parsing_check(t_game game);
 char	**dfs_marker(char **map);
@@ -111,13 +112,11 @@ void	bonus_free_map(char **map);
 void	bonus_destroy_game_pre(t_game *game);
 int		bonus_destroy_game_post(t_game *game);
 void	bonus_destroy_images(t_game *game);
-void	bonus_ft_draw_map(t_game game);
 void	move_up(t_game *game);
 void	move_left(t_game *game);
 void	move_down(t_game *game);
 void	move_right(t_game *game);
 void	bonus_player_find(t_game *game);
-void	bonus_ft_draw_tiles(t_game game, int flag);
 void	bonus_load_images(t_game *game);
 void	bonus_imgmsg_loadcheck(t_game *game);
 int		bonus_move_flag(t_game *game, int i, int j);
@@ -125,7 +124,7 @@ void	bonus_update_game(t_game *game);
 void	error_print_msg_pre_map(int error_num);
 void	error_print_msg(int error_num, char **map);
 void	check_for_walls(char **map, int map_height);
-void	enemy_put_image(t_game game, int i, int j, int flag);
+void	enemy_put_image(t_game game, int i, int j);
 int		move_animation(t_game *game);
 int		enemy_kill(t_game *game);
 void	find_enemy(t_game *game);
@@ -134,6 +133,5 @@ void	load_enemy_images(t_game *game);
 void	dfs(t_game *game, char **mark_map, int j, int i);
 int		valid_path_check(t_game *game, char **mark_map);
 
-void	free_map(char **map);
 void	ft_common(t_game *game, int move_result);
 #endif

@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:15 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/11 13:09:37 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/28 12:39:30 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int	main(int ac, char **av)
 	window_initializer(&game);
 	mlx_hook(game.win.mlx_win, 17, 0L, destroy_game_post, &game);
 	ft_draw_map(game);
-	ft_draw_tiles(game, game.player.direction);
 	mlx_key_hook(game.win.mlx_win, key_hook, &game);
 	mlx_loop(game.mlx);
 	free_map(game.map);

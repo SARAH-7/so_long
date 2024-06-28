@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:58:18 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/24 19:07:34 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/28 17:07:48 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ int	key_hook(int keycode, t_game *game)
 		bonus_destroy_game_post(game);
 	else
 	{
-		ft_printf("Error\n");
+		ft_printf("Error! You Pressed Wrong Key.\n");
 		return (1);
 	}
-	bonus_update_game(game);
 	return (0);
 }
 
