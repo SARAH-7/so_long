@@ -6,7 +6,7 @@
 #    By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/29 10:58:12 by sbakhit           #+#    #+#              #
-#    Updated: 2024/07/02 15:17:36 by sbakhit          ###   ########.fr        #
+#    Updated: 2024/07/02 19:19:47 by sbakhit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ BONUS_NAME = so_long_bonus
 
 LIBFT = libft/libft.a
 FT_PRINTF = ft_printf/libftprintf.a
-# MINILIBX = minilibx/libmlx.a
+MINILIBX = minilibx/libmlx.a
 
 SOURCES = so_long.c file_parser.c map_parser.c get_next_line.c get_next_line_utils.c \
 map_checker.c freeing_functions.c dfs_marker.c valid_path.c imgs_funcs.c map_draw.c \
@@ -52,8 +52,8 @@ $(LIBFT):
 $(FT_PRINTF):
 	make -C ft_printf
 
-# $(MINILIBX):
-# 	make -C minilibx
+$(MINILIBX):
+	make -C minilibx
 
 %.o: %.c
 	$(CC) $(CFLAGS) -Ilibft -Ift_printf -Iminilibx -c $< -o $@
@@ -64,7 +64,7 @@ $(BONUS_DIR)/%.o: $(BONUS_DIR)/%.c
 clean:
 	make clean -C libft
 	make clean -C ft_printf
-# make clean -C minilibx
+make clean -C minilibx
 	rm -f $(OBJECTS) $(BONUS_OBJS)
 
 fclean: clean
