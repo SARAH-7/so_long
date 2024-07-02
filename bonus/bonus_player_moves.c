@@ -6,13 +6,13 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 01:28:41 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/28 17:05:37 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/07/02 19:10:54 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	move_up(t_game *game)
+void	bonus_move_up(t_game *game)
 {
 	int		i;
 	int		j;
@@ -35,7 +35,7 @@ void	move_up(t_game *game)
 	bonus_update_game(game);
 }
 
-void	move_left(t_game *game)
+void	bonus_move_left(t_game *game)
 {
 	int		i;
 	int		j;
@@ -58,7 +58,7 @@ void	move_left(t_game *game)
 	bonus_update_game(game);
 }
 
-void	move_down(t_game *game)
+void	bonus_move_down(t_game *game)
 {
 	int		i;
 	int		j;
@@ -80,7 +80,7 @@ void	move_down(t_game *game)
 	bonus_update_game(game);
 }
 
-void	move_right(t_game *game)
+void	bonus_move_right(t_game *game)
 {
 	int		i;
 	int		j;

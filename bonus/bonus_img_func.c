@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 01:16:02 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/28 12:39:17 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/07/02 19:12:01 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	load_enemy_images(t_game *game)
 			&game->enemy_album[1].img_height);
 }
 
-int	bonus_image_parser(t_game game)
+int	image_parser(t_game game)
 {
 	int	i;
 
@@ -47,7 +47,7 @@ int	bonus_image_parser(t_game game)
 
 void	bonus_imgmsg_loadcheck(t_game *game)
 {
-	if (!bonus_image_parser(*game))
+	if (!image_parser(*game))
 	{
 		ft_printf("Error! Check all image files are present\n");
 		bonus_destroy_images(game);

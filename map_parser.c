@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:10:31 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/23 17:21:28 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/07/02 19:02:30 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	map_width(char *map_row)
 	if (i > 53)
 	{
 		ft_printf("You Exceed The Possible Window Width!\n");
-		return (0);
+		exit(0);
 	}
 	return (i);
 }
@@ -41,7 +41,7 @@ int	map_height(char **map)
 	if (i > 29)
 	{
 		ft_printf("You Exceed The Possible Window Height!\n");
-		exit(EXIT_FAILURE);
+		exit (0);
 	}
 	return (i);
 }
@@ -65,18 +65,23 @@ int	fd_map_height(int fd)
 
 	line = NULL;
 	i = 0;
-	line = get_next_line(fd);
-	if (line)
-		i++;
-	while (line)
+	while (1)
 	{
 		line = get_next_line(fd);
-		if (line)
-			i++;
+		if (!line && i == 0)
+		{
+			close(fd);
+			exit(EXIT_FAILURE);
+		}
+		if (!line)
+			break ;
+		i++;
+		free(line);
 	}
 	if (i > 29)
 	{
 		ft_printf("You Exceed The Possible Window Height!\n");
+		close(fd);
 		exit(EXIT_FAILURE);
 	}
 	return (i);
@@ -103,7 +108,8 @@ char	**map_parser(int fd, char **av)
 	}
 	while (line != NULL)
 	{
-		map[i++] = assign_map(map, line, &i);
+		map[i] = assign_map(map, line, &i);
+		i++;
 		line = get_next_line(fd);
 	}
 	check_for_walls(map, i);

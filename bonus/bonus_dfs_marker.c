@@ -6,13 +6,13 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:35:20 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/11 19:51:02 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/07/02 14:14:20 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-int	ft_line_length(char *map_row)
+int	bonus_ft_line_length(char *map_row)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ int	ft_line_length(char *map_row)
 	return (i);
 }
 
-int	ft_line_count(char **map)
+int	bonus_ft_line_count(char **map)
 {
 	int	i;
 
@@ -36,7 +36,7 @@ int	ft_line_count(char **map)
 	return (i);
 }
 
-char	**dfs_marker(char **map)
+char	**bonus_dfs_marker(char **map)
 {
 	char	**dfs_marker;
 	int		rows;
@@ -44,8 +44,8 @@ char	**dfs_marker(char **map)
 	int		i;
 	int		j;
 
-	rows = ft_line_count(map);
-	cols = ft_line_length(map[0]);
+	rows = bonus_ft_line_count(map);
+	cols = bonus_ft_line_length(map[0]);
 	dfs_marker = (char **)malloc(sizeof(char *) * (rows + 1));
 	i = 0;
 	while (map[i])

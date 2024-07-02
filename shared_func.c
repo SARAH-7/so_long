@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 07:41:44 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/11 07:43:23 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/06/28 20:55:43 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ void	free_map(char **map)
 	if (!map || !(*map))
 		return ;
 	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
+		free(map[i++]);
 	free(map);
 }

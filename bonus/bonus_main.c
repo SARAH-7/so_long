@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:58:18 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/28 17:07:48 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/07/02 19:12:10 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	key_hook(int keycode, t_game *game)
 {
 	if (keycode == W_KEY)
-		move_up(game);
+		bonus_move_up(game);
 	else if (keycode == A_KEY)
-		move_left(game);
+		bonus_move_left(game);
 	else if (keycode == S_KEY)
-		move_down(game);
+		bonus_move_down(game);
 	else if (keycode == D_KEY)
-		move_right(game);
+		bonus_move_right(game);
 	else if (keycode == ESC_KEY)
 		bonus_destroy_game_post(game);
 	else
@@ -34,8 +34,8 @@ int	key_hook(int keycode, t_game *game)
 
 void	game_initializer(t_game *game)
 {
-	game->win.x = map_width(game->map[0]);
-	game->win.y = map_height(game->map);
+	game->win.x = bonus_map_width(game->map[0]);
+	game->win.y = bonus_map_height(game->map);
 	if (game->win.x == 0 || game->win.y == 0 || (game->win.x == game->win.y))
 	{
 		if (game->win.x == game->win.y)
@@ -81,12 +81,12 @@ void	valid_path_checker(t_game *game)
 	char	**marked_map;
 
 	find_enemy(game);
-	marked_map = dfs_marker(game->map);
+	marked_map = bonus_dfs_marker(game->map);
 	if (!marked_map)
 		error_print_msg(6, game->map);
-	dfs(game, marked_map, game->player.position_x / DIM,
+	bonus_dfs(game, marked_map, game->player.position_x / DIM,
 		game->player.position_y / DIM);
-	if (valid_path_check(game, marked_map) == 0)
+	if (bonus_valid_path_check(game, marked_map) == 0)
 		error_print_msg(7, game->map);
 }
 
@@ -97,12 +97,12 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		error_print_msg_pre_map(1);
-	if (!file_parser(av[1]))
+	if (!bonus_file_parser(av[1]))
 		error_print_msg_pre_map(2);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		error_print_msg_pre_map(3);
-	game.map = map_parser(fd, av);
+	game.map = bonus_map_parser(fd, av);
 	game_initializer(&game);
 	bonus_checker(&game);
 	valid_path_checker(&game);

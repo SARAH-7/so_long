@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 21:11:01 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/28 16:28:29 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/07/02 19:14:12 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	move_up(t_game *game)
 	j = game->player.position_x / DIM;
 	i = (game->player.position_y / DIM) - 1;
 	move_result = move_flag(game, i, j);
-	if (move_result == 1 || move_result == 2)
+	if (move_result == 1)
 	{
 		ft_draw_tiles(*game);
 		game->map[i][j] = 'P';

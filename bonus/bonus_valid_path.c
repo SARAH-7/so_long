@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:56:37 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/24 21:03:52 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/07/02 14:27:10 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	find_neighbors(int j, int i, t_index *neighbors)
 	neighbors[3] = (t_index){i, j + 1};
 }
 
-void	dfs(t_game *game, char **mark_map, int j, int i)
+void	bonus_dfs(t_game *game, char **mark_map, int j, int i)
 {
 	t_index			neighbors[4];
 	int				k;
@@ -41,7 +41,7 @@ void	dfs(t_game *game, char **mark_map, int j, int i)
 			&& j < game->win.x && (!(game->map[i][j] == '1'
 				|| game->map[i][j] == 'E' || game->map[i][j] == '\0')
 			&& mark_map[i][j] == 'F'))
-			dfs(game, mark_map, j, i);
+			bonus_dfs(game, mark_map, j, i);
 		k++;
 	}
 }
@@ -90,7 +90,7 @@ int	valid_path_map_check(t_game *game, char **mark_map, int i, int flag)
 	return (flag);
 }
 
-int	valid_path_check(t_game *game, char **mark_map)
+int	bonus_valid_path_check(t_game *game, char **mark_map)
 {
 	int	i;
 	int	flag;

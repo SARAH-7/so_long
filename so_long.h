@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:50:22 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/24 21:11:26 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/07/02 15:10:53 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdarg.h>
 # include "libft/libft.h"
 # include "ft_printf/ft_printf.h"
-# include "minilibx/mlx.h"
+// # include "minilibx/mlx.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <limits.h>

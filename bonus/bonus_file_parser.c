@@ -6,13 +6,13 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:32:26 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/11 19:32:44 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/07/02 14:43:50 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-int	file_parser(const char *map_path)
+int	bonus_file_parser(const char *map_path)
 {
 	static const char	*file_format = ".ber";
 	int					i;

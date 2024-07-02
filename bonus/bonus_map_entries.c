@@ -6,7 +6,7 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:11:16 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/21 18:50:59 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/07/02 18:38:59 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	check_borders(char **map, int i)
 	}
 }
 
-void	check_for_walls(char **map, int map_height)
+void	bonus_check_for_walls(char **map, int map_height)
 {
 	int	i;
 

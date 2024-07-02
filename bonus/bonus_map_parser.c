@@ -6,13 +6,13 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:51:22 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/23 17:21:43 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/07/02 19:02:59 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-int	map_width(char *map_row)
+int	bonus_map_width(char *map_row)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ int	map_width(char *map_row)
 	return (i);
 }
 
-int	map_height(char **map)
+int	bonus_map_height(char **map)
 {
 	int	i;
 
@@ -65,24 +65,29 @@ int	fd_map_height(int fd)
 
 	line = NULL;
 	i = 0;
-	line = get_next_line(fd);
-	if (line)
-		i++;
-	while (line)
+	while (1)
 	{
 		line = get_next_line(fd);
-		if (line)
-			i++;
+		if (!line && i == 0)
+		{
+			close(fd);
+			exit(EXIT_FAILURE);
+		}
+		if (!line)
+			break ;
+		i++;
+		free(line);
 	}
 	if (i > 29)
 	{
 		ft_printf("You Exceed The Possible Window Height!\n");
+		close(fd);
 		exit(EXIT_FAILURE);
 	}
 	return (i);
 }
 
-char	**map_parser(int fd, char **av)
+char	**bonus_map_parser(int fd, char **av)
 {
 	char	*line;
 	char	**map;
@@ -103,9 +108,10 @@ char	**map_parser(int fd, char **av)
 	}
 	while (line != NULL)
 	{
-		map[i++] = assign_map(map, line, &i);
+		map[i] = assign_map(map, line, &i);
+		i++;
 		line = get_next_line(fd);
 	}
-	check_for_walls(map, i);
+	bonus_check_for_walls(map, i);
 	return (close(fd), map);
 }

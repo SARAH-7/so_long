@@ -6,13 +6,13 @@
 /*   By: sbakhit <sbakhit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:07:40 by sbakhit           #+#    #+#             */
-/*   Updated: 2024/06/11 19:34:35 by sbakhit          ###   ########.fr       */
+/*   Updated: 2024/07/02 14:57:49 by sbakhit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	checker(t_game *game)
+void	bonus_checker(t_game *game)
 {
 	int	i;
 	int	j;
@@ -29,7 +29,8 @@ void	checker(t_game *game)
 				game->collectable_counter++;
 			else if (game->map[i][j] == 'E')
 				game->exit_checker++;
-			else if (!(game->map[i][j] == '1' || game->map[i][j] == '0'))
+			else if (!(game->map[i][j] == '1' || game->map[i][j] == '0'
+				|| game->map[i][j] == 'N'))
 				error_print_msg(4, game->map);
 			j++;
 		}
