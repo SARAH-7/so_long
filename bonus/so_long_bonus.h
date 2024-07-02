@@ -18,7 +18,7 @@
 # include <stdarg.h>
 # include "../libft/libft.h"
 # include "../ft_printf/ft_printf.h"
-// # include "../minilibx/mlx.h"
+# include "../mlx/mlx.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <limits.h>

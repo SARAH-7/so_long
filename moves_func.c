@@ -29,7 +29,7 @@ int	move_up(t_game *game)
 		update_game(game);
 	}
 	if (move_result == 3)
-		ft_printf("Collect all coins first!\n");
+		printf("Collect all coins first!\n");
 	if (move_result == 2)
 	{
 		game->winning_check = 1;
@@ -56,7 +56,7 @@ int	move_left(t_game *game)
 		update_game(game);
 	}
 	if (move_result == 3)
-		ft_printf("Collect all coins first!\n");
+		printf("Collect all coins first!\n");
 	if (move_result == 2)
 	{
 		game->winning_check = 1;
@@ -82,7 +82,7 @@ int	move_down(t_game *game)
 		update_game(game);
 	}
 	if (move_result == 3)
-		ft_printf("Collect all coins first LOL!\n");
+		printf("Collect all coins first LOL!\n");
 	if (move_result == 2)
 	{
 		game->winning_check = 1;
@@ -109,7 +109,7 @@ int	move_right(t_game *game)
 		update_game(game);
 	}
 	if (move_result == 3)
-		ft_printf("Collect all coins first LOL!\n");
+		printf("Collect all coins first LOL!\n");
 	if (move_result == 2)
 	{
 		game->winning_check = 1;

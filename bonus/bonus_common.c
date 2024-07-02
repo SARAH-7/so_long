@@ -15,7 +15,7 @@
 void	ft_common(t_game *game, int move_result)
 {
 	if (move_result == 3)
-		ft_printf("First, Eat All the Meat!\n");
+		printf("First, Eat All the Meat!\n");
 	else if (move_result == 2)
 	{
 		game->winning_check = 1;
@@ -23,7 +23,7 @@ void	ft_common(t_game *game, int move_result)
 	}
 	else if (move_result == 4)
 	{
-		ft_printf("You Touched an Enemy, You Died!\n");
+		printf("You Touched an Enemy, You Died!\n");
 		bonus_destroy_game_post(game);
 	}
 }

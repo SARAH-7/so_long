@@ -34,7 +34,7 @@ void	move_up(t_game *game)
 		destroy_game_post(game);
 	}
 	if (move_result == 3)
-		ft_printf("First, Eat All the Meat!\n");
+		printf("First, Eat All the Meat!\n");
 }
 
 void	move_left(t_game *game)
@@ -60,7 +60,7 @@ void	move_left(t_game *game)
 		destroy_game_post(game);
 	}
 	if (move_result == 3)
-		ft_printf("First, Eat All the Meat!\n");
+		printf("First, Eat All the Meat!\n");
 }
 
 void	move_down(t_game *game)
@@ -85,7 +85,7 @@ void	move_down(t_game *game)
 		destroy_game_post(game);
 	}
 	if (move_result == 3)
-		ft_printf("First, Eat All the Meat!\n");
+		printf("First, Eat All the Meat!\n");
 }
 
 void	move_right(t_game *game)
@@ -111,5 +111,5 @@ void	move_right(t_game *game)
 		destroy_game_post(game);
 	}
 	if (move_result == 3)
-		ft_printf("First, Eat All the Meat!\n");
+		printf("First, Eat All the Meat!\n");
 }

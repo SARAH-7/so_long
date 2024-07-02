@@ -58,5 +58,5 @@ void	update_game(t_game *game)
 	game->player.moves_counter++;
 	player_find(game);
 	ft_draw_tiles(*game);
-	ft_printf("Moves: %d\n", game->player.moves_counter);
+	printf("Moves: %d\n", game->player.moves_counter);
 }

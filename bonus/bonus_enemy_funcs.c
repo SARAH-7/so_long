@@ -107,7 +107,7 @@ int	move_animation(t_game *game)
 	}
 	if (enemy_kill(game) == 0)
 	{
-		ft_printf("You touched an enemy!\n");
+		printf("You touched an enemy!\n");
 		bonus_destroy_game_post(game);
 	}
 	return (0);

@@ -10,62 +10,55 @@
 #                                                                              #
 # **************************************************************************** #
 
+# Program Names
 NAME = so_long
 BONUS_NAME = so_long_bonus
 
+# Libraries
 LIBFT = libft/libft.a
 FT_PRINTF = ft_printf/libftprintf.a
-MINILIBX = minilibx/libmlx.a
+MINILIBX_PATH = ./mlx
+MINILIBX = $(MINILIBX_PATH)/libmlx.a
 
-SOURCES = so_long.c file_parser.c map_parser.c get_next_line.c get_next_line_utils.c \
+# Flags
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+MLXFLAGS = -L $(MINILIBX_PATH) -lmlx -Imlx -framework OpenGL -framework AppKit
+
+# Source Files
+CFILES = so_long.c file_parser.c map_parser.c get_next_line.c get_next_line_utils.c \
 map_checker.c freeing_functions.c dfs_marker.c valid_path.c imgs_funcs.c map_draw.c \
 moves_updater.c player_moves.c error_print_msg.c map_entries.c shared_func.c
 
 BONUS_DIR = bonus
-
-B_SOURCES = $(addprefix $(BONUS_DIR)/,bonus_main.c bonus_checker.c bonus_img_func.c \
+B_CFILES = $(addprefix $(BONUS_DIR)/,bonus_main.c bonus_checker.c bonus_img_func.c \
 bonus_map_draw.c bonus_moves_updater.c bonus_enemy_funcs.c bonus_enemy_kill_func.c \
 bonus_freeing_funcs.c bonus_player_moves.c bonus_valid_path.c bonus_shared_func.c \
 bonus_map_parser.c bonus_map_entries.c bonus_file_parser.c bonus_dfs_marker.c \
 find_enemy.c bonus_common.c) error_print_msg.c get_next_line.c get_next_line_utils.c
 
-OBJECTS = $(SOURCES:.c=.o)
-BONUS_OBJS = $(B_SOURCES:.c=.o)
-
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
-LDFLAGS = -Llibft -Lft_printf -Lminilibx -lft -lftprintf
-
+# Targets
 all: $(NAME)
 
-$(NAME): $(OBJECTS) $(LIBFT) $(FT_PRINTF) $(MINILIBX)
-	$(CC) $(CFLAGS) $(OBJECTS) $(LDFLAGS) -o $(NAME)
+$(NAME): $(CFILES)
+	$(MAKE) -C libft
+	$(MAKE) -C ft_printf
+	$(MAKE) -C $(MINILIBX_PATH)
+	$(CC) $(CFLAGS) $(CFILES) $(LIBFT) $(FT_PRINTF) $(MLXFLAGS) -o $(NAME)
 
 bonus: $(BONUS_NAME)
 
-$(BONUS_NAME): $(BONUS_OBJS) $(LIBFT) $(FT_PRINTF) $(MINILIBX)
-	$(CC) $(CFLAGS) $(BONUS_OBJS) $(LDFLAGS) -o $(BONUS_NAME)
-
-$(LIBFT):
-	make -C libft
-
-$(FT_PRINTF):
-	make -C ft_printf
-
-$(MINILIBX):
-	make -C minilibx
-
-%.o: %.c
-	$(CC) $(CFLAGS) -Ilibft -Ift_printf -Iminilibx -c $< -o $@
-
-$(BONUS_DIR)/%.o: $(BONUS_DIR)/%.c
-	$(CC) $(CFLAGS) -Ilibft -Ift_printf -Iminilibx -c $< -o $@
+$(BONUS_NAME): $(B_CFILES)
+	$(MAKE) -C libft
+	$(MAKE) -C ft_printf
+	$(MAKE) -C $(MINILIBX_PATH)
+	$(CC) $(CFLAGS) $(B_CFILES) $(LIBFT) $(FT_PRINTF) $(MLXFLAGS) -o $(BONUS_NAME)
 
 clean:
 	make clean -C libft
 	make clean -C ft_printf
-make clean -C minilibx
-	rm -f $(OBJECTS) $(BONUS_OBJS)
+	make clean -C $(MINILIBX_PATH)
+	rm -f *.o $(BONUS_DIR)/*.o
 
 fclean: clean
 	make fclean -C libft

@@ -49,7 +49,7 @@ void	bonus_imgmsg_loadcheck(t_game *game)
 {
 	if (!image_parser(*game))
 	{
-		ft_printf("Error! Check all image files are present\n");
+		printf("Error! Check all image files are present\n");
 		bonus_destroy_images(game);
 		mlx_destroy_window(game->mlx, game->win.mlx_win);
 		free(game->mlx);

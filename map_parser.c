@@ -23,7 +23,7 @@ int	map_width(char *map_row)
 		i++;
 	if (i > 53)
 	{
-		ft_printf("You Exceed The Possible Window Width!\n");
+		printf("You Exceed The Possible Window Width!\n");
 		exit(0);
 	}
 	return (i);
@@ -40,7 +40,7 @@ int	map_height(char **map)
 		i++;
 	if (i > 29)
 	{
-		ft_printf("You Exceed The Possible Window Height!\n");
+		printf("You Exceed The Possible Window Height!\n");
 		exit (0);
 	}
 	return (i);
@@ -80,7 +80,7 @@ int	fd_map_height(int fd)
 	}
 	if (i > 29)
 	{
-		ft_printf("You Exceed The Possible Window Height!\n");
+		printf("You Exceed The Possible Window Height!\n");
 		close(fd);
 		exit(EXIT_FAILURE);
 	}

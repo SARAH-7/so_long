@@ -26,7 +26,7 @@ int	key_hook(int keycode, t_game *game)
 		bonus_destroy_game_post(game);
 	else
 	{
-		ft_printf("Error! You Pressed Wrong Key.\n");
+		printf("Error! You Pressed Wrong Key.\n");
 		return (1);
 	}
 	return (0);

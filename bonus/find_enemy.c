@@ -21,7 +21,7 @@ void	enemy_pos(t_game *game, int i, int j)
 	{
 		if (game->map[i][j - k] == '1' || game->map[i][j - k] == 'C')
 		{
-			ft_printf("Enemy Within 3 Spaces of a Wall or a Collectable\n");
+			printf("Enemy Within 3 Spaces of a Wall or a Collectable\n");
 			bonus_free_map(game->map);
 			exit(EXIT_SUCCESS);
 		}

@@ -66,9 +66,9 @@ void	bonus_destroy_game_pre(t_game *game)
 int	bonus_destroy_game_post(t_game *game)
 {
 	if (game->winning_check == 0)
-		ft_printf("Game Has Exited.\n");
+		printf("Game Has Exited.\n");
 	else if (game->winning_check == 1)
-		ft_printf("Congrats! Now Let's Make More Crafts Inside!\n");
+		printf("Congrats! Now Let's Make More Crafts Inside!\n");
 	bonus_free_map(game->map);
 	bonus_destroy_images(game);
 	mlx_destroy_window(game->mlx, game->win.mlx_win);
